@@ -25,7 +25,7 @@ Currently, there is no direct empirical evidence to address this question. Explo
 
 The data come from Study 2 of [Byrd et al. (2023)](https://www.mdpi.com/2079-3200/11/4/76), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test (vCRT) by thinking aloud as they solved each problem.
 
-Participants' verbalizations were recorded as audio files and subsequently transcribed using a state-of-the-art automatic speech recognition model: `Whisper Large v3 Turbo`.
+Participants' verbalizations were recorded as audio files. We subsequently transcribed using a state-of-the-art automatic speech recognition model: `Whisper Large v3 Turbo` (because the automatic transcription already present in the dataset was of poor quality).
 
 ---
 
@@ -127,22 +127,22 @@ Response Regulation: [score between 0 and 100]
 
 We examined the relationships between the four deliberation functions scored by the LLM: Control, Generation, Justification, and Regulation. This analysis allows us to check whether the functions capture distinct aspects of the reasoning process, as theoretically expected.
 
-We computed a single correlation matrix including both the LLM function scores and hand-coded indicators of reflective thinking from Byrd et al. (2023). These hand-coded variables correspond to two key components of reflection:
+We computed a single correlation matrix including both the LLM function scores and hand-coded indicators of reflective thinking. These hand-coded variables correspond to two key components of reflection:
 
-- Deliberateness: Whether the participant verbally reconsidered their initial response (named *reconsidered _initial_resp* in the Figure). 
-- Consciousness: Whether the participant verbalized reasons for or against a response (named *verbalized_reasons* in the Figure).
+- Deliberateness: Whether the participant verbally reconsidered their initial response (named *reconsidered _initial_resp* in the Figure); should correlate with Control and Regulation.
+- Consciousness: Whether the participant verbalized reasons for or against a response (named *verbalized_reasons* in the Figure); should correlate with Justification the most.
 
 These ratings were assigned based on the procedure described by Byrd et al., with moderate inter-rater agreement.
 
 ![Correlation heatmap between LLM function scores and hand-coded variables.](./Output/deliberation_function_handscored_variables_correlation_heatmap_handscored.png)
 
-*Figure 1. Correlation heatmap between LLM function scores and hand-coded variables from Byrd et al. (2023). This joint analysis allows us to verify whether LLM-derived functions capture distinct constructs while aligning with established indicators of reflection. Only significant correlations (p < .05) are shown.*
+*Figure 1. Correlation heatmap between LLM function scores and hand-coded variables from Byrd et al. (2023). This joint analysis allows us to verify whether LLM-derived functions capture distinct constructs while aligning with human-rated indicators. Only significant correlations (p < .05) are shown.*
 
 ---
 
 ## Distribution of Number of Chunks
 
-We examined the distribution of the number of reasoning segments (chunks) per question.
+We can have a look at the distribution of the number of reasoning segments (chunks) per question.
 
 ### Overall Distribution
 
@@ -186,7 +186,7 @@ where chunk_id is the sequential number of the chunk within the transcription, a
 
 This transformation ensures that the first chunk always has a normalized position of 0, the last chunk a position of 1, and intermediate chunks are evenly distributed between them. Importantly, this is not a measure of real time or duration — it reflects the ordinal progression of reasoning steps.
 
-Thus, normalized time provides a positional representation of thought dynamics, allowing us to compare the trajectory of deliberation functions across responses of varying length and verbosity.
+Thus, normalized time provides a positional representation of thought dynamics, allowing us to compare the trajectory of deliberation functions across responses of varying length.
 
 Since we are interested in trajectory, we exclude the responses with only one chunk identified by the LLM (which were quite rare).
 
@@ -196,13 +196,15 @@ Reasoning chunks correspond to meaningful units of thought within participants' 
 
 To explore this, we identified the dominant function of each chunk based on the highest LLM-assigned score (Control, Generation, Justification, or Regulation). In case of ties, the chunk was excluded from this analysis.
 
-We then examined whether chunk length (measured by word count) differed across functions. Intuitively, chunks associated with Response Generation might be longer, as participants explore and verbalize possible answers or reasoning steps. In contrast, chunks associated with Response Control or brief hesitation might be shorter.
+We then examined whether chunk length (measured by word count) differed across functions. Intuitively, chunks associated with Response Generation might be longer, as participants explore and verbalize possible answers or reasoning steps.
 
 ![Boxplot of word count per chunk by dominant function.](./Output/boxplot_word_count.png)
 
 *Figure 7. Distribution of word count per chunk by dominant function. Points represent individual chunks; yellow markers indicate the mean word count per function.*
 
 ### Overall Trajectory
+
+First, let's have a first look at the trajectories using simple LOESS smoothing over the mean function scores.
 
 ![Mean trajectory of deliberation functions over normalized time.](./Output/overall_trajectory_loess_preliminary.png)
 
@@ -237,6 +239,8 @@ GAMs offer a flexible statistical framework that allows us to model the potentia
 In addition, GAMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
 
 Given the noisy nature of our LLM-annotated data, GAMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
+
+**Warning: I am not very used to GAM; so the results may not be perfect yet.**
 
 ![GAM-predicted trajectories for each deliberation function. Confidence intervals represent 95% CI.](./Output/gam_trajectory_functions_overall_trajectory.png)
 
@@ -307,6 +311,8 @@ Building on this first, several avenues are open for future work:
 - **Analysis of specific subcases**:
   - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
+
+- **Use better LLM models**
 
 ---
 
