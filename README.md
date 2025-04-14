@@ -85,17 +85,17 @@ Be exhaustive.
 For instance, the transcription: "*A monkey, a squirrel and a bird are racing to the top of a coconut tree. Who will get the banana first? The monkey, the squirrel or the bird? I'm not really sure. I'm not sure birds eat bananas. I don't really know.*" was segmented as follows:
 
 ```text
-1) A monkey, a squirrel and a bird are racing to the top of a coconut tree.
+1) *A monkey, a squirrel and a bird are racing to the top of a coconut tree.*
 
-2) Who will get the banana first?
+2) *Who will get the banana first?*
 
-3) The monkey, the squirrel or the bird?
+3) *The monkey, the squirrel or the bird?*
 
-4) I'm not really sure.
+4) *I'm not really sure.*
 
-5) I'm not sure birds eat bananas.
+5) *I'm not sure birds eat bananas.*
 
-6) I don't really know.
+6) *I don't really know.*
 ```
 
 ### Scoring Procedure
