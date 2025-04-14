@@ -259,11 +259,11 @@ We fitted generalized additive mixed models (GAMMs) to predict function trajecto
 
 GAMMs offer a flexible statistical framework that allows us to model the potentially non-linear dynamics of deliberation functions over normalized time. They are particularly well-suited for this analysis because they can capture complex trajectory shapes without making strong assumptions about their form.
 
-In addition, GAMMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
+In addition, GAMMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than weird patterns in the data.
 
-Given the noisy nature of our LLM-annotated data, GAMMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
+Given the (quite) noisy nature of our LLM-annotated data, GAMMs provide an important advantage: they smooth the trajectories while preserving meaningful signal, providing a balance between underfitting and overfitting.
 
-**Warning: I am not very used to GAM(M); so the results may not be perfect yet.**
+**Warning: I am not very used to GAM(M); so I may have made some mistakes**
 
 Below is the overall trajectory of each deliberation function (across all responses), as predicted by the GAMM.
 
