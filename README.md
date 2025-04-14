@@ -123,7 +123,7 @@ Response Regulation: [score between 0 and 100]
 [Optional broad label for a different function — only if clearly needed]
 ```
 
-## Validation of LLM Function Scores
+## LLM Function Scores Correlation and Validation
 
 We examined the relationships between the four deliberation functions scored by the LLM: Control, Generation, Justification, and Regulation. This analysis allows us to check whether the functions capture distinct aspects of the reasoning process, as theoretically expected.
 
@@ -188,17 +188,29 @@ This transformation ensures that the first chunk always has a normalized positio
 
 Thus, normalized time provides a positional representation of thought dynamics, allowing us to compare the trajectory of deliberation functions across responses of varying length and verbosity.
 
+## Chunk Length by Dominant Function (Control Analysis)
+
+Reasoning chunks correspond to meaningful units of thought within participants' verbalizations. However, the length of these chunks may vary depending on their dominant deliberation function.
+
+To explore this, we identified the dominant function of each chunk based on the highest LLM-assigned score (Control, Generation, Justification, or Regulation). In case of ties, the chunk was excluded from this analysis.
+
+We then examined whether chunk length (measured by word count) differed across functions. Intuitively, chunks associated with Response Generation might be longer, as participants explore and verbalize possible answers or reasoning steps. In contrast, chunks associated with Response Control or brief hesitation might be shorter.
+
+![Boxplot of word count per chunk by dominant function.](./Output/boxplot_word_count.png)
+
+*Figure 7. Distribution of word count per chunk by dominant function. Points represent individual chunks; yellow markers indicate the mean word count per function.*
+
 ### Overall Trajectory
 
 ![Mean trajectory of deliberation functions over normalized time.](./Output/overall_trajectory_loess_preliminary.png)
 
-*Figure 7. Mean trajectory of each deliberation function across all responses.*
+*Figure 8. Mean trajectory of each deliberation function across all responses.*
 
 ### Trajectory by Accuracy
 
 ![Mean trajectory of deliberation functions by response type (biased vs unbiased).](./Output/trajectory_by_response_loess_preliminary.png)
 
-*Figure 8. Mean trajectory of deliberation functions by accuracy.*\
+*Figure 9. Mean trajectory of deliberation functions by accuracy.*
 
 ---
 
@@ -210,7 +222,7 @@ We computed the difference in function trajectories between incorrect and correc
 
 ![Difference in trajectories between unbiased and biased responses for each deliberation function.](./Output/difference_trajectory_unbiased_biased_faceted_loess_preliminary.png)
 
-*Figure 9. Difference in trajectories (correct minus incorrect) across deliberation functions.*
+*Figure 10. Difference in trajectories (correct minus incorrect) across deliberation functions.*
 
 ---
 
@@ -218,9 +230,15 @@ We computed the difference in function trajectories between incorrect and correc
 
 We fitted generalized additive models (GAMs) to predict function trajectories.
 
+GAMs offer a flexible statistical framework that allows us to model the potentially non-linear dynamics of deliberation functions over normalized time. They are particularly well-suited for this analysis because they can capture complex trajectory shapes without making strong assumptions about their form.
+
+In addition, GAMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
+
+Given the noisy nature of verbal reasoning data, GAMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
+
 ![GAM-predicted trajectories for each deliberation function. Confidence intervals represent 95% CI.](./Output/gam_trajectory_functions_overall_trajectory.png)
 
-*Figure 10. GAM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
+*Figure 11. GAM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
 
 ---
 
@@ -230,7 +248,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![Pairwise differences between function trajectories. Grey areas indicate significant differences after FDR correction.](./Output/gam_pairwise_functions_difference_trajectory.png)
 
-*Figure 11. Pairwise differences between deliberation function trajectories. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 12. Pairwise differences between deliberation function trajectories. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
@@ -238,21 +256,41 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![GAM-predicted trajectories by response type (biased vs unbiased) and deliberation function.](./Output/gam_trajectory_per_response_and_function.png)
 
-*Figure 12. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 13. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
 
 ---
 
-## Trajectories by Lure Consideration (GAM)
+## Conclusions
+
+**Overall Trajectory**
+
+- Generation happens early
+- Control happens later
+- Justification comes even later
+- Regulation stays low overall — increasing a bit at the end (likely to check or monitor the response).
+
+**Biased vs. Unbiased Comparison**
+- Generation happens even earlier for biased responses — they jump quickly to an answer. Unbiased participants take more time.
+- Control shows the clearest difference — unbiased participants show much more Control all along, while biased participants stay flat and low.
+- Justification is higher (and later) for unbiased participants.
+- Regulation doesn’t differ much — it stays low for both groups, increasing slightly at the end.
+
+--
+
+## Complementary Analyses
+
+--
+
+### Trajectories by Lure Consideration (GAM)
 
 ![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
-*Figure 13. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 14. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
 
 ---
 
-## Trajectories by Familiarity (GAM)
+### Trajectories by Familiarity (GAM)
 
 ![GAM-predicted trajectories by participant familiarity with the test.](./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png)
 
-*Figure 14. GAM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
-
+*Figure 15. GAM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).
