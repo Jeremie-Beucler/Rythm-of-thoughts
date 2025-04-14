@@ -129,7 +129,6 @@ ggcorrplot(cor_matrix,
            lab_size = 4, 
            colors = c("darkblue", "white", "darkred"),
            outline.color = "grey50",
-           title = "Correlation between Deliberation Functions",
            legend.title = "r") +
   theme_apa() +
   theme(plot.title = element_text(face = "bold"))
@@ -189,7 +188,6 @@ ggcorrplot(cor_matrix_handscored,
            lab_size = 4, 
            colors = c("darkblue", "white", "darkred"),
            outline.color = "grey50",
-           title = "Correlation Between LLM Scores and Handscored Variables",
            legend.title = "r") +
   theme_apa() +
   theme(plot.title = element_text(face = "bold"))
@@ -229,7 +227,7 @@ chunks_long = chunks_long %>%
                                         response_generation = "Generation",
                                         response_justification = "Justification",
                                         response_regulation = "Regulation"),
-         response = ifelse(response == "Reflect", "Unbiased Response", "Biased Response"))
+         response = ifelse(response == "Reflect", "Correct", "Incorrect"))
 
 
 # --------------------------------------------------------------------
@@ -293,8 +291,7 @@ ggplot(n_chunks_df, aes(x = n_chunks)) +
   geom_density(aes(y = ..count..), color = "black", linewidth = 1) +
   labs(
     x = "Number of Chunks per Question",
-    y = "Count",
-    title = "Distribution of Number of Chunks per Question"
+    y = "Count"
   ) +
   theme_apa()
 
@@ -308,8 +305,7 @@ ggplot(n_chunks_df, aes(x = n_chunks, fill = response)) +
   facet_wrap(~response, ncol = 2) +
   labs(
     x = "Number of Chunks per Question",
-    y = "Count",
-    title = "Distribution of Number of Chunks per Question by Response"
+    y = "Count"
   ) +
   theme_apa()
 
@@ -326,8 +322,7 @@ ggplot(n_chunks_df_lure, aes(x = n_chunks, fill = factor(lure_consideration))) +
   facet_wrap(~lure_consideration, ncol = 2) +
   labs(
     x = "Number of Chunks per Question",
-    y = "Count",
-    title = "Distribution of Number of Chunks per Question by Lure Consideration"
+    y = "Count"
   ) +
   theme_apa()
 
@@ -348,8 +343,7 @@ ggplot(n_chunks_df_lure_resp, aes(x = n_chunks, fill = factor(lure_consideration
   ) +
   labs(
     x = "Number of Chunks per Question",
-    y = "Count",
-    title = "Distribution of Number of Chunks per Question by Response and Lure Consideration"
+    y = "Count"
   ) +
   theme_apa()
 
@@ -388,7 +382,7 @@ ggplot(chunks_dominant, aes(x = dominant_function, y = word_count, fill = domina
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(width = 0.2, alpha = 0.3) +
   stat_summary(fun = mean, geom = "point", shape = 18, size = 5, color = "yellow") +
-  labs(title = "Word Count per Chunk by Dominant Function",
+  labs(
        x = "Dominant Function",
        y = "Word Count") +
   theme_apa() +
@@ -399,7 +393,7 @@ ggplot(chunks_dominant, aes(x = dominant_function, y = char_count, fill = domina
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(width = 0.2, alpha = 0.3) +
   stat_summary(fun = mean, geom = "point", shape = 18, size = 5, color = "yellow") +
-  labs(title = "Character Count per Chunk by Dominant Function",
+  labs(
        x = "Dominant Function",
        y = "Character Count") +
   theme_apa()+
@@ -599,12 +593,12 @@ mean_trajectory_resp <- chunks_long %>%
 # Pivot Wider: Separate Unbiased and Biased
 # --------------------------------------------------------------------
 trajectory_diff <- mean_trajectory_resp %>%
-  filter(response %in% c("Biased Response", "Unbiased Response")) %>%
+  filter(response %in% c("Incorrect", "Correct")) %>%
   pivot_wider(
     names_from = response,
     values_from = score
   ) %>%
-  mutate(difference = `Unbiased Response` - `Biased Response`)
+  mutate(difference = `Correct` - `Incorrect`)
 
 # --------------------------------------------------------------------
 # Smoothing Function
@@ -981,8 +975,8 @@ for(f in unique(newdata$deliberation_function)) {
     tmp <- newdata %>%
       filter(deliberation_function == f, normalized_position == pos)
     
-    d  <- tmp$pred[tmp$response == "Unbiased Response"] - tmp$pred[tmp$response == "Biased Response"]
-    se <- sqrt(tmp$se[tmp$response == "Unbiased Response"]^2 + tmp$se[tmp$response == "Biased Response"]^2)
+    d  <- tmp$pred[tmp$response == "Correct"] - tmp$pred[tmp$response == "Incorrect"]
+    se <- sqrt(tmp$se[tmp$response == "Correct"]^2 + tmp$se[tmp$response == "Incorrect"]^2)
     
     zval <- d / se
     pval <- 2 * (1 - pnorm(abs(zval)))
@@ -1053,10 +1047,10 @@ p_final <- ggplot() +
   
   facet_wrap(~deliberation_function, ncol = 2, scales = "free_y") +
   
-  scale_color_manual(values = c("Unbiased Response" = "forestgreen",
-                                "Biased Response"   = "tomato3")) +
-  scale_fill_manual(values = c("Unbiased Response" = "forestgreen",
-                               "Biased Response"   = "tomato3")) +
+  scale_color_manual(values = c("Correct" = "forestgreen",
+                                "Incorrect"   = "tomato3")) +
+  scale_fill_manual(values = c("Correct" = "forestgreen",
+                               "Incorrect"   = "tomato3")) +
   
   theme_apa() +
   
@@ -1090,7 +1084,7 @@ chunks_long_lure <- chunks_long %>%
     question              = factor(question)
   ) %>% 
   filter(lure_consideration %in% c("Lure Non-Considered", "Lure Considered"),
-         response %in% c("Unbiased Response", "Biased Response"))
+         response %in% c("Correct", "Incorrect"))
 
 # ----------------------------------------------------------------------------
 # Model (as you did)
