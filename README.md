@@ -188,6 +188,8 @@ This transformation ensures that the first chunk always has a normalized positio
 
 Thus, normalized time provides a positional representation of thought dynamics, allowing us to compare the trajectory of deliberation functions across responses of varying length and verbosity.
 
+Since we are interested in trajectory, we exclude the responses with only one chunk identified by the LLM (which were quite rare).
+
 ## Chunk Length by Dominant Function (Control Analysis)
 
 Reasoning chunks correspond to meaningful units of thought within participants' verbalizations. However, the length of these chunks may vary depending on their dominant deliberation function.
@@ -269,7 +271,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 - Justification comes even later
 - Regulation stays low overall — increasing a bit at the end (likely to check or monitor the response).
 
-**Biased vs. Unbiased Comparison**
+**Correct vs. Incorrect Responses Comparison**
 - Generation happens even earlier for biased responses — they jump quickly to an answer. Unbiased participants take more time.
 - Control shows the clearest difference — unbiased participants show much more Control all along, while biased participants stay flat and low.
 - Justification is higher (and later) for unbiased participants.
