@@ -259,6 +259,8 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 *Figure 12. Pairwise differences between deliberation function trajectories. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
+*Note*: beware, here the scales of the y-axes are not the same across panels.
+
 ---
 
 ## Trajectories by Accuracy and Function (GAMM)
