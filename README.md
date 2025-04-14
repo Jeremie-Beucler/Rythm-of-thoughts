@@ -20,30 +20,31 @@ We use this broad theoretical taxonomy as the basis for our analyses. Crucially,
 Currently, there is no direct empirical evidence to address this question. Exploring the temporal dynamics of deliberation functions could provide valuable insights into how people engage in reflective thinking. Our work aims to contribute to this effort by using language models to automatically segment and score verbal reasoning data. This approach allows us to track, at a fine-grained level, how different deliberation functions unfold over time within participants' verbalizations.
 
 On a purely descriptive level, it also allows us to quantify how prevalent each function is in participants' reasoning, and how this varies across different types of responses (e.g., correct vs. incorrect).
+
 ---
 
 ## Data and Audio Transcription
 
-The data come from Study 2 of [Byrd et al. (2023)](https://www.mdpi.com/2079-3200/11/4/76), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test (vCRT) by thinking aloud as they solved each problem.
+The data come from Study 2 of [Byrd et al. (2023)](https://www.mdpi.com/2079-3200/11/4/76), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test ([Sirota et al., 2021](https://onlinelibrary.wiley.com/doi/abs/10.1002/bdm.2213)) by thinking aloud as they solved each problem (out of 10). The dataset thus contains 1020 audio files (one for each participant and question).
 
 ![Verbal CRT.](./Output/verbal_CRT_Sirota.png)
 
-*Figure 1. Items from the verbal version of the Cognitive Reflection Test (vCRT; [Sirota et al., 2021](https://onlinelibrary.wiley.com/doi/abs/10.1002/bdm.2213)).*
+*Figure 1. Items from the verbal version of the Cognitive Reflection Test.*
 
-Participants' verbalizations were recorded as audio files. We subsequently transcribed using a state-of-the-art automatic speech recognition model: `Whisper Large v3 Turbo` (because the automatic transcription already present in the dataset was of poor quality).
+Participants’ verbalizations were recorded as .mp3 audio files. We transcribed them to text using a state-of-the-art automatic speech recognition model, `Whisper Large v3 Turbo`, since the original dataset transcriptions were of poor quality.
 
 ---
 
 ## Chunking and Scoring of Transcriptions
 
-We used the `meta-llama/Llama-3.3-70B-Instruct` model served via the HuggingFace Inference API.
+We used the `meta-llama/Llama-3.3-70B-Instruct` model via the HuggingFace Inference API.
 
 The generation parameters were set to:
 
 - `temperature = 1`
 - `top_p = 1`
 
-These settings encouraged the model to generate coherent but flexible segmentations of participants' transcriptions into distinct ideas or reasoning steps.
+This setting is quite usual for LLMs, as it allows the model to generate diverse and creative responses while maintaining coherence.
 
 ### Chunking Procedure
 
@@ -79,6 +80,28 @@ Chunk 3:
 [exact text of chunk 3]
 
 Be exhaustive.
+```
+
+For instance, the transcription: "A monkey, a squirrel and a bird are racing to the top of a coconut tree. Who will get the banana first? The monkey, the squirrel or the bird? I'm not really sure. I'm not sure birds eat bananas. I don't really know." was segmented as follows:
+
+```text
+Chunk 1:
+A monkey, a squirrel and a bird are racing to the top of a coconut tree.
+
+Chunk 2:
+Who will get the banana first?
+
+Chunk 3:
+The monkey, the squirrel or the bird?
+
+Chunk 4:
+I'm not really sure.
+
+Chunk 5:
+  I'm not sure birds eat bananas.
+
+Chunk 6:
+I don't really know.
 ```
 
 ### Scoring Procedure
