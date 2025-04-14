@@ -1,0 +1,2 @@
+"0",""
+"0","  ggsave(""../Output/mean_trajectory_per_word_by_response.png"", dpi = 600, width = 14, height = 8)"

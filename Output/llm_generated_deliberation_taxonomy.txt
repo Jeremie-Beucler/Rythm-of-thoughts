@@ -1,0 +1,103 @@
+# Response Control
+- Rejection
+- Assumption Challenge
+- Error Detection
+- Error Recognition
+- Identifying Errors
+- Self-Correction
+- Correction
+- Correction Application
+- Reality Checking
+- Reality Check
+- Suspicion of Deception
+- Confirmation Bias
+- Premature Conclusion
+- Oversimplification
+
+# Response Generation
+- Hypothesis Generation
+- Alternative Generation
+- Insight Generation
+- Generating Examples
+- Inference Generation
+- Pattern Completion
+- Pattern Application
+- Assumption Making
+- Initial Hypothesis
+- Hypothesis Formation
+- Initial Assumption
+- Default Assumption
+- Pattern assumption
+- Making Assumptions
+- Default Reasoning
+- Alternative Consideration
+- Considering Alternatives
+- Weighing Options
+- Elimination Strategy
+- Eliminating Choices
+
+# Response Justification
+- Justification
+- Explanation is not explicitly listed, but related terms like Elaboration, Clarification, and Restatement can be considered under this category.
+- Elaboration
+- Clarification
+- Restatement
+- Restating Problem
+- Scenario Elaboration
+- Information Integration
+- Consequence Evaluation
+- Evaluating Consequences
+- Evaluation
+- Drawing Conclusion
+- Drawing Conclusions
+- Conclusion Drawing
+- Conclusion Formation
+- Tentative Conclusion
+- Conclusion Revision
+
+# Response Regulation
+- Reevaluation
+- Self-Questioning
+- Questioning Assumptions
+- Identifying Assumptions
+- Identifying Prerequisites
+- Meta-Cognition
+- Expression of Uncertainty
+- Expressing Uncertainty
+- Uncertainty Expression
+- Doubt Expression
+- Initial Confusion
+- Initial Reaction
+- Emotional Reaction
+- Contextual Consideration
+- Contextual Analysis
+- Contextualizing
+- Contextual Reevaluation
+
+# Other
+- Reading Aloud
+- Reading Comprehension
+- Initial Reading
+- Repeating Information
+- Information Repetition
+- Repeating Question
+- Repeating Options
+- Initial Repetition
+- Repetition
+- Reiteration
+- Information Reiteration
+
+# Non-Assignable
+- Initial Response
+- Initial Guess
+- Initial Interpretation
+- Initial Assessment
+- Initial Consideration
+- Misinterpretation
+- Simplification
+- Analogical Reasoning
+- Inference
+- Logical Inference
+- Question Reiteration 
+- Knowledge Retrieval
+- Information Retrieval

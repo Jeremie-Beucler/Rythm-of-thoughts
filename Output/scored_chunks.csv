@@ -1,0 +1,145 @@
+subject_id,question,chunk_id,chunk_text,response_control,response_generation,response_justification,response_regulation,llm_comment
+1,1,1,Seven.,0,0,0,0,Counting Aloud
+1,2,1,Second,0,20,0,0,
+1,3,1,"It's a stormy night and plenty of stuff, I'm just gonna get it.",0,10,0,0,
+1,3,2,Stormy listens to pain crashes onto you.,0,0,0,0,Reading Aloud
+1,4,1,Who will get the banana first?,0,0,0,0,Reading Aloud
+1,4,2,"The monkey, the squirrel or the bird?",0,80,0,0,
+1,4,3,You don't know.,20,0,0,80,
+1,5,1,"One story pink house, pink chair, pink house, pink chair, pink house, pink club with the stairs.",0,20,0,0,Repetition/Free Association
+1,5,2,One stories don't have stairs.,80,20,60,0,
+1,6,1,What did Moses put on the ark?,20,80,0,10,
+1,6,2,"No, the ark was no.",80,20,0,40,
+1,7,1,The wind goes west and the electric train runs east in which Cardinal Direction does the smoke from the locomotive go.,0,20,0,0,Reading Aloud/Repeating Question
+1,7,2,There isn't.,80,0,0,0,
+1,7,3,There's a new smoke.,0,20,0,0,
+1,8,1,"If you have only one mark in your work, it's a great deal.",0,0,0,0,Reading Aloud/Task Irrelevance
+1,9,1,We have to call for a man to marry the sister of his widow.,0,20,0,0,
+1,10,1,The jok of the egg is white.,0,0,0,0,Reading Aloud
+2,1,1,Mary's father has five daughters but no sons.,0,0,0,0,Reading Aloud
+2,1,2,"Nana, Nini, Nini, Nono, what is the fifth daughter's name probably?",0,80,0,20,
+2,1,3,Nunu?,0,80,0,0,
+2,2,1,"If you were running a race and you passed the person in second place, what place would you be in now?",0,0,0,0,Reading Aloud
+2,2,2,Second place.,0,0,0,0,
+2,3,1,It's a stormy night and a plane takes off from JFK Airport to New York.,0,0,0,0,Reading Aloud
+2,3,2,The stormers and the plane crash half-lens in the United States and the other half-lens in Canada.,20,80,0,0,
+2,3,3,In which country do you bury the survivors?,0,0,0,0,Reading Aloud
+2,3,4,I suppose it depends on the nationality of each individual survivor.,20,60,10,10,
+2,4,1,"A monkey, a squirrel and a bird are racing to the top of a coconut tree.",0,0,0,0,Reading Aloud
+2,4,2,Who will get the banana first?,0,0,0,0,Reading Aloud
+2,4,3,"The monkey, the squirrel or the bird?",0,80,0,0,
+2,4,4,I'm not really sure.,20,10,0,80,
+2,4,5,I'm not sure birds eat bananas.,20,40,10,30,
+2,4,6,I don't really know.,0,0,0,20,
+2,5,1,"In a one-story pink house, there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower. Everything was pink.",0,80,0,0,
+2,5,2,"What color were the stairs? Probably. If everything was pink, I imagine the stairs were probably pink.",0,20,40,0,
+2,5,3,"Oh wait, actually, it's a one-story house. There's no stairs.",80,20,0,40,
+2,6,1,How many of each animal did Moses put on the ark?,0,0,0,0,Reading Aloud
+2,6,2,Two of each animal.,0,20,0,0,
+2,7,1,"The wind blows west, an electric train runs east, in which cardinal direction does the smoke from the locomotive blow?",0,20,0,0,Reading Aloud
+2,7,2,"It's an electric train, so there's no smoke.",80,20,80,0,
+2,8,1,"If you have only one match and you walk into a dark room where there is an oil lamp and newspaper and wood, which thing would you like first?",0,0,0,0,Reading Aloud
+2,8,2,You'd like the match first.,0,0,0,0,
+2,9,1,Would it be ethical for a man to marry the sister of his widow?,0,0,0,0,Reading Aloud
+2,9,2,I don't really know.,0,0,0,20,
+2,9,3,"They're not blood relatives, so I'm not really sure whether it's ethical or not.",20,40,30,10,
+2,9,4,It depends.,20,10,0,30,
+2,10,1,Which sentence is correct? A. The yolk and the egg are wise or B. The yolk of the egg is wise.,0,80,0,0,Misreading/Task Misinterpretation
+2,10,2,I think B.,0,0,0,0,
+2,10,3,The yolk of the egg is white.,0,0,0,0,Reading Aloud
+2,10,4,I suppose because the yoke of the egg are white would be for eggs plural whereas the yoke of the egg is white is for eggs singular.,80,20,80,0,
+3,1,1,Mary's father has five daughters but no sons.,0,0,0,0,Reading Aloud
+3,1,2,Mary's father has five daughters but no sons.,0,0,0,0,Reading Aloud
+3,1,3,"Nana? Nina? Nene? No, no.",80,70,0,20,
+3,1,4,What is the fifth daughter's name probably?,0,20,0,10,
+3,1,5,Please remember to read aloud and say everything that comes to mind microphone is already recorded speak through your thoughts,0,0,0,0,Task Instruction Reiteration
+3,1,6,so mary's father has five daughters but no sons,0,0,0,0,Reading Aloud
+3,1,7,nana nini nini no no,20,60,0,10,
+3,1,8,what is the fifth daughter's name probably?,0,20,0,0,
+3,1,9,daughters four of them so it must be Mary,80,20,60,0,
+3,2,1,"Okay, so if I was running a race and you passed the person in second place, what place would you now be in?",0,10,0,0,Reading Aloud
+3,2,2,So I would now be in second place because the person that was in second place I've passed them unless I pass them going backwards and I was first,80,60,80,20,
+3,2,3,now I think it's presumably I'll now be second,20,10,10,30,
+3,3,1,"It's a stormy night and a plane takes off from JFK Airport in New York. The storm worsens and the plane crashes. Half lands in the United States, the other half lands in Canada.",0,80,0,0,
+3,3,2,In which country do you bury the survivors?,0,0,0,0,Reading Aloud
+3,3,3,Don't forget to keep reading and thinking aloud.,0,0,0,0,Task Instruction
+3,3,4,I think it would be wherever they are from they would get buried as opposed to anything to do with where the plane took off from or the plane crashed,20,60,80,10,
+3,3,5,Thank you.,0,0,0,0,Social Comment
+3,4,1,"A monkey, a squirrel, a bird are racing to the top of a coconut tree. Who will get the banana first, the monkey, the squirrel, or the bird?",0,0,0,0,Reading Aloud
+3,4,2,"A monkey, a squirrel, and a bird are racing to the top of a coconut tree. Who will get the banana first.",0,0,0,0,Reading Aloud
+3,4,3,"Well, I'm thinking that a monkey likes bananas.",0,20,10,0,
+3,4,4,I don't know if they're squirrel does and a bird does.,20,60,0,10,
+3,4,5,They probably do.,0,20,10,0,
+3,4,6,"So, I would just say a monkey.",0,20,10,0,
+3,4,7,Okay.,0,0,0,0,
+3,5,1,"In one storey pink house there was a pink person, pink cat and a pink fish, a pink computer, pink chair, pink table, a pink telephone, a pink shower. Everything was pink.",0,20,0,0,Elaboration/Description
+3,5,2,What colour were the stairs?,0,20,0,0,
+3,5,3,"Probably. Well, reading that it says everything was pink.",20,10,0,10,
+3,5,4,But it says it's only a one-story pink house.,80,20,0,0,
+3,5,5,So what colour were the stairs?,0,20,0,0,
+3,5,6,So I'm thinking there wouldn't be any stairs.,80,60,20,40,
+3,5,7,"One-story house, might it have stairs for anything?",80,90,20,40,
+3,5,8,"I suppose it could have stairs to the front door, so I'm going to say pink.",0,60,20,0,
+3,6,1,How many of each animal did Moses put on the ark?,0,0,0,0,Reading Aloud
+3,6,2,It was two.,0,0,0,0,
+3,6,3,"Halfway done, don't forget to keep reading and thinking aloud.",0,0,0,0,Task Instruction
+3,6,4,"Okay, so the answer I'm thinking is two.",0,0,0,0,
+3,7,1,"The wind blows west, an electric train runs east. In which cardinal direction does the smoke from the locomotive blow?",0,20,0,0,Reading Aloud
+3,7,2,"So I'm thinking the train is going east, and the wind is blowing west.",0,60,0,20,
+3,7,3,"So I would think that the smoke would be also going west, regardless of which way the train was going.",0,80,20,0,
+3,7,4,It would blow it west.,0,0,0,0,
+3,8,1,"If you have only one match and you walk into a darkroom where there is an oil lamp, a newspaper and wood, which thing would you light first?",0,0,0,0,Reading Aloud
+3,8,2,"Well, I would think out of all of those, probably newspaper because it would be the easiest thing to light.",0,80,60,0,
+3,8,3,And then I could use that to light the other things so I'm going to say newspaper,0,20,60,0,
+3,9,1,"Would it be ethical for a man to marry the sister of his widow? Remember to say everything that comes to mind, even if it seems unrelated.",0,0,0,0,Reading Aloud
+3,9,2,So would it seem ethical? So a man to marry the sister of his widow?,0,20,0,10,
+3,9,3,"Yes, I think that's ethical.",0,0,0,0,
+3,9,4,Some people might not.,20,10,10,10,
+3,9,5,I can't think of a reason why it wouldn't be.,0,20,60,0,
+3,9,6,It would be ethical for a man to marry the sister of his widow.,0,0,0,0,
+3,9,7,"Yes, it would be ethical.",0,0,0,0,
+3,9,8,It would be ethical would be ethical,0,0,0,0,Task Repetition
+3,10,1,Which sentence is correct? A. The yolk of the egg are white. Or B. The yolk of the egg is white.,0,0,0,0,Reading Aloud
+3,10,2,The yolk of the egg are white.,0,0,0,0,Reading Aloud
+3,10,3,"Well, it sounds a bit singular, so you think the yolk of the egg is white would be the answer.",20,10,30,10,
+3,10,4,Right.,0,0,0,0,
+3,10,5,"Okay, so I'm going to say B.",0,0,0,0,
+4,1,1,"Mary's father has five daughters but no sons, Nana, Nini, Nini and Nono.",0,0,0,0,Reading Aloud
+4,1,2,What is the fifth daughter's name probably?,0,20,0,0,
+4,1,3,Nunu.,0,20,0,0,
+4,2,1,"If you were running a race and you passed a person in second place, what place would you be now?",0,0,0,0,Reading Aloud
+4,2,2,I would be first place.,0,20,0,0,
+4,2,3,I presume anyway.,20,0,0,10,
+4,3,1,It's a stormy night and a plane takes off from JFK Airport in New York.,0,20,0,0,Reading Aloud/Scenario Introduction
+4,3,2,The storm worsens and the plane crashes.,0,0,0,0,Reading Aloud
+4,3,3,Halflands in the United States and the other halflands in Canada.,0,80,0,0,
+4,3,4,In which country do you bury the survivors?,0,0,0,0,Reading Aloud
+4,3,5,I presume it would be the United States?,0,20,0,0,
+4,4,1,"A monkey, a squirrel and a bird are racing to the top of a coconut tree.",0,0,0,0,Reading Aloud
+4,4,2,"Who will get the banana first, the monkey, the squirrel or the bird?",0,20,0,0,
+4,4,3,"I presume it would be the monkey because, oh I don't know, or could it be the squirrel?",20,80,10,10,
+4,4,4,I presume the monkey because it's bigger and it can move quicker I presume.,0,80,80,0,
+4,4,5,"Not sure though, but I will put monkey.",20,10,10,60,
+4,5,1,"In a one-storey pink house there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone and a pink shower",0,80,0,0,Elaboration/Imagination
+4,5,2,"Everything was pink, what colour were the stairs probably?",0,20,0,0,
+4,5,3,"Hmm, let me think",20,80,0,80,
+4,5,4,Maybe pink by any chance?,20,60,0,10,
+4,6,1,How many of each animal did Moses put on the ark?,0,0,0,0,Reading Aloud
+4,6,2,Two,0,0,0,0,
+4,6,3,Did Moses put on the ark?,80,20,0,40,
+4,6,4,"It wasn't Moses, it was our, I know it",80,20,0,0,
+4,7,1,The wind blows west and the electric train runs east.,0,0,0,0,Reading Aloud
+4,7,2,In which card and all direction does the smoke from the locomotive go?,0,80,0,20,
+4,7,3,"West, I don't know.",20,10,0,30,
+4,8,1,"If you have only one match and you walk into a dark room, where is an oil lamp, a newspaper and wood, which thing would you like first?",0,0,0,0,Reading Aloud
+4,8,2,"Newspaper, I think.",0,20,0,10,
+4,8,3,"Oh, well, no.",80,0,0,20,
+4,8,4,Oh.,20,0,0,10,
+4,8,5,You would like the match first.,80,20,0,0,
+4,9,1,Would it be ethical for a man to marry the sister of his widow?,0,0,0,0,Reading Aloud
+4,9,2,"No, not to me anyway.",20,0,40,10,
+4,10,1,Which sentence is correct?,0,0,0,0,Reading Aloud
+4,10,2,A. The yolk of the egg are white.,0,0,0,0,Reading Aloud
+4,10,3,B. The yolk of the egg is white.,0,0,0,0,Reading Aloud
+4,10,4,"Oh, normally it's yellow, so I don't get what that means, but put white.",80,20,0,0,
+4,10,5,B.,0,0,0,0,Reading Aloud

@@ -1,0 +1,201 @@
+﻿subject_id,question,function,prototypes
+1,1,control,"1. Okay, wait a minute, don't jump to conclusions here.
+2. I need to slow down and think this through, not just blurt out the first thing that comes to mind.
+3. Hold on, let me rethink this, my initial reaction might be wrong.
+4. I'm getting ahead of myself, need to take a step back and consider other possibilities.
+5. Stop, don't say it out loud, think it through carefully before responding."
+1,1,generation,"1. I'm trying to think of all the possibilities here and see what makes sense.
+2. Maybe there's a pattern I'm missing that could help me figure this out.
+3. Let me brainstorm a few different scenarios and see if any of them seem plausible.
+4. I need to consider all the different options and weigh the pros and cons of each one.
+5. What if I approach this from a completely different angle and see if that leads me to a solution."
+1,1,justification,"1. I think this makes sense because it follows a logical pattern that I've noticed in similar situations.
+2. My reasoning is that the information given points to a specific conclusion, and I'm just connecting the dots.
+3. This answer seems plausible to me because it's consistent with the overall structure of the problem.
+4. I'm leaning towards this answer because it's the most straightforward explanation based on what I know.
+5. I believe this is correct because it takes into account all the relevant details and doesn't leave any loose ends."
+1,1,regulation,"1. I'm not sure if I'm approaching this problem from the right angle, I need to take a step back.
+2. This is actually harder than I thought it would be, I'm having to think really carefully.
+3. I feel like I'm missing something obvious, but I just can't put my finger on it.
+4. I'm trying to break it down into smaller parts, but it's still not completely clear to me.
+5. I think I need to slow down and go through my thought process again, I don't want to rush into a wrong answer."
+1,2,control,"1. Wait, let me not jump to conclusions here.
+2. I need to think this through, not just react with my first instinct.
+3. Hold on, I'm getting ahead of myself with this initial thought.
+4. Okay, pause, don't let my mind go straight to the obvious answer.
+5. I have to slow down and not let my gut reaction take over."
+1,2,generation,"1. I'm trying to think of all the different possibilities here.
+2. Let me consider a few different scenarios and see what makes sense.
+3. What are all the potential outcomes that could happen in this situation?
+4. I need to brainstorm some alternatives and weigh the pros and cons of each.
+5. Maybe if I think about it from a different angle, something will come to mind."
+1,2,justification,"1. I think this makes sense because it's based on a pretty straightforward logic that I've used before in similar situations.
+2. My reasoning is that if I'm in a certain position, then something must have happened to get me there, and that's what leads me to this conclusion.
+3. This answer seems right to me because it takes into account all the different factors that could be affecting the outcome.
+4. I'm justified in thinking this way because it's consistent with how these types of things usually work, in my experience.
+5. I believe I'm on the right track here because I've thought through all the possible alternatives and this one is the most plausible."
+1,2,regulation,"1. I'm not sure if I'm approaching this problem from the right angle.
+2. This seems simpler than I thought, but I want to make sure I'm not missing anything.
+3. I'm going to take a step back and rethink my whole strategy here.
+4. Okay, let me break it down step by step to see if that helps clarify things.
+5. I feel like I'm overcomplicating this, maybe I just need to go with my initial instinct."
+1,3,control,"1. Okay, wait a minute, don't just go with the first thing that pops into my head.
+2. I need to slow down and think this through, not just react impulsively.
+3. Let me take a step back, I don't want to jump to conclusions here.
+4. Hold on, I'm getting ahead of myself, let me rethink this.
+5. I'm trying to force myself to consider other possibilities, not just the obvious one."
+1,3,generation,"1. I'm trying to think of all the possible ways this could play out.
+2. What are the different scenarios that could lead to a solution here?
+3. I need to consider multiple angles before I can even start to narrow it down.
+4. Let me see if I can come up with some alternative explanations.
+5. Maybe if I brainstorm a list of possibilities, something will stand out."
+1,3,justification,"1. I think this way because it seems like the most logical approach to the question.
+2. My reasoning is based on the assumption that the answer should be straightforward.
+3. This makes sense to me because it follows a simple and intuitive pattern.
+4. I'm considering this option because it doesn't require any complicated thinking.
+5. It seems plausible to me because it's a fairly obvious conclusion to draw."
+1,3,regulation,"1. I'm not sure where to start with this, it's got me stuck already.
+2. I need to think this through more carefully, I don't want to rush into anything.
+3. This is tougher than I thought, I'm going to have to put some more effort into it.
+4. I'm trying to consider all the possibilities, but I'm not sure which way to go.
+5. Okay, let me take a step back and think about how I'm approaching this problem."
+1,4,control,"1. Wait, don't jump to conclusions just yet, let me think this through.
+2. I need to slow down and not just go with my initial reaction.
+3. Hold on, I'm getting ahead of myself, let me reconsider.
+4. Okay, pause for a second, don't blurt out the first thing that comes to mind.
+5. Stop, take a deep breath, and think beyond the obvious answer."
+1,4,generation,"1. I'm trying to think of all the possible ways this could play out.
+2. Maybe there's an assumption I'm making that I shouldn't be making.
+3. Let me consider the different scenarios that could lead to a solution.
+4. I need to brainstorm more ideas before I can narrow it down.
+5. What are the different factors that could influence the outcome of this situation?"
+1,4,justification,"1. I think my answer makes sense because it's based on a logical sequence of events.
+2. My reasoning is that certain characteristics would give one contestant an advantage over the others.
+3. This approach seems valid to me because it takes into account the physical abilities of the contestants.
+4. I'm justifyling my choice by considering the potential obstacles each contestant might face.
+5. My answer is supported by the fact that I've thought about the strengths and weaknesses of each option."
+1,4,regulation,"1. I'm not sure where to start with this, it seems a bit tricky.
+2. I need to take a step back and think about how I'm approaching this problem.
+3. I'm feeling a bit stuck, so I'll try to break it down into smaller parts.
+4. This is taking more effort than I expected, but I think I'm on the right track.
+5. I'm going to try to think it through slowly and carefully to make sure I get it right."
+1,5,control,"1. I need to think this through and not just go with my initial instinct.
+2. Let me slow down and consider all possibilities before jumping to a conclusion.
+3. I'm getting a strong urge to just say the first thing that comes to mind, but I should probably wait.
+4. My brain is trying to force a quick answer, but I should try to override that impulse.
+5. I have to make myself pause and reflect instead of blurring out the obvious response."
+1,5,generation,"1. I'm trying to think of all the possibilities here and see what makes the most sense.
+2. Maybe there's an assumption I'm not considering that could change everything.
+3. I should think about the different ways this could play out and what the implications would be.
+4. Let me see if I can come up with some alternative explanations and compare them.
+5. What if I approach this from a completely different angle and see if that leads me anywhere?"
+1,5,justification,"1. I think this way because it seems like the most logical conclusion based on the information given.
+2. My reasoning is that if everything is a certain way, then it's likely that this particular thing would be the same.
+3. This makes sense to me because it follows a pattern that I've noticed in similar situations.
+4. I'm choosing this answer because it's the one that feels most consistent with the overall context.
+5. It seems to me that this is the most reasonable choice, given the circumstances and what I know so far."
+1,5,regulation,"1. I'm not sure if I'm overthinking this, but it feels like it should be straightforward.
+2. I need to slow down and make sure I'm considering all the possibilities.
+3. This is taking more effort than I expected, I must be missing something simple.
+4. I'm going to try to approach this from a different angle, see if that helps clarify things.
+5. I feel like I'm getting stuck, maybe I should take a step back and rethink my whole strategy."
+1,6,control,"1. I feel like I'm about to say something really obvious, but I should probably think it through a bit more.
+2. Okay, let me not jump to conclusions here and take a step back.
+3. My first instinct is to just blurt out an answer, but that's probably not the best idea.
+4. I need to slow down and not let my initial reaction take over.
+5. There's this one thing that immediately comes to mind, but I should try to consider other possibilities first."
+1,6,generation,"1. I'm trying to think of all the possibilities here, to see if I can come up with something that makes sense.
+2. Maybe if I break it down into smaller parts, I can get a better idea of what might be going on.
+3. There could be a few different ways to approach this, so I'll just have to see what works best.
+4. I'm going to have to think outside the box a bit and consider some alternative explanations.
+5. Let me see if I can mentally walk through a few different scenarios and see where they lead."
+1,6,justification,"1. I think this because it makes sense based on the information I have, and it seems like the most logical conclusion.
+2. This answer feels right to me because I've considered all the different possibilities and this one fits best.
+3. I'm leaning towards this answer since it's consistent with what I know about the situation, and it doesn't contradict anything.
+4. My reasoning is that this answer is the most plausible given the context, and it's what I would expect to happen.
+5. I believe this is correct because I've thought it through step by step, and each part of my thought process supports this conclusion."
+1,6,regulation,"1. I'm not sure where to start with this, it seems like a pretty complex question.
+2. I'm having a bit of trouble wrapping my head around it, so I'll take a moment to think.
+3. I feel like I need to break it down into smaller parts to make sense of it.
+4. This is taking longer than I expected, I might need to rethink my approach.
+5. I'm going to try to take a step back and look at it from a different angle to see if that helps."
+1,7,control,"1. Okay, wait, don't jump to conclusions just yet, think this through carefully.
+2. I need to slow down and not just go with my initial instinct here.
+3. Hold on, let me not be too hasty in my response, consider all options.
+4. I'm getting a gut feeling, but I should probably suppress that for now and think logically.
+5. Stop, don't blurt it out, take a moment to reflect and make sure that's really the right approach."
+1,7,generation,"1. I'm trying to think of all the possible ways this could play out.
+2. What if I consider the opposite of what I initially thought?
+3. There must be a few different scenarios that could lead to a solution.
+4. I'm going to brainstorm a list of potential options and see what sticks.
+5. Let me think through a few hypothetical situations and see where they take me."
+1,7,justification,"1. I think this way because it seems to follow a logical pattern that I've noticed.
+2. My reasoning is based on the assumption that certain factors are related in a specific way.
+3. This makes sense to me because I can think of similar situations where the same principle applies.
+4. I'm choosing this option because it's the most consistent with the information I have so far.
+5. It seems plausible to me because I can imagine a plausible explanation for why it would be true."
+1,7,regulation,"1. This is taking me a bit longer than I expected, I need to slow down and think it through.
+2. I'm not sure if I'm on the right track, I should probably reevaluate my approach.
+3. I'm feeling pretty confident about this, but I should still double-check my reasoning.
+4. This seems like it should be straightforward, but for some reason, I'm just not getting it.
+5. Okay, let me take a step back and think about how I want to tackle this problem."
+1,8,control,"1. Okay, wait, don't jump to conclusions here, think it through carefully.
+2. I need to slow down and not just go with my initial instinct on this one.
+3. Hold on, let me not react too quickly and consider all the possibilities.
+4. I'm getting ahead of myself, need to take a step back and rethink this.
+5. Stop, don't blurt it out, think about it for a second before responding."
+1,8,generation,"1. I'm trying to think of all the different possibilities here and see what makes the most sense.
+2. Let me consider a few different approaches and see if any of them stand out as better than the others.
+3. I wonder if there's a way to break this down into smaller parts and tackle each one individually.
+4. What are all the different things that could happen if I start with one option versus another?
+5. Maybe if I think about the overall goal, I can come up with some alternative ways to get there."
+1,8,justification,"1. I think this approach makes sense because it seems like the most logical way to start the process.
+2. My reasoning is that if I do it this way, I'll be able to figure out what to do next more easily.
+3. It seems to me that this is the best option because it allows for the most flexibility in case something goes wrong.
+4. I'm considering this answer because it appears to be the simplest and most straightforward solution.
+5. This choice seems justified to me because it takes into account all the different factors that could be at play."
+1,8,regulation,"1. I'm not sure where to start with this, it seems a bit tricky at first.
+2. I think I need to take a step back and consider all the options carefully.
+3. This is taking me a while, I hope I'm not overthinking it too much.
+4. I feel like I'm missing something obvious, let me rethink my approach.
+5. I'm going to try to break it down into smaller parts and see if that helps me make a decision."
+1,9,control,"1. Okay, let me not jump to conclusions here and think this through.
+2. I'm getting a strong initial reaction, but I should probably slow down.
+3. My first instinct is to just blurt something out, but that's probably not the best approach.
+4. I need to pause for a second and make sure I'm not missing something obvious.
+5. Let me take a step back and try to consider all the possibilities before I respond."
+1,9,generation,"1. I'm trying to think of all the different ways this could play out.
+2. What are the possible implications of each option I'm considering?
+3. Maybe if I approach it from a different angle, something will stand out.
+4. I need to weigh the pros and cons of each scenario in my head.
+5. Let me see if I can come up with a few more possibilities to compare."
+1,9,justification,"1. I think this makes sense because it's based on a pretty straightforward interpretation of the situation.
+2. My reasoning is that if you consider all the factors, it's the most logical conclusion to draw.
+3. This seems right to me because it takes into account all the different possibilities and outcomes.
+4. I'm defending this answer because it's consistent with the way these kinds of things usually work.
+5. It appears to be a valid answer since it's supported by a clear and coherent line of thinking."
+1,9,regulation,"1. I'm not sure where to start with this, it seems like a pretty tricky question.
+2. I need to take a step back and think about how I'm approaching this problem.
+3. I'm feeling a bit stuck, so I'll try to break it down into smaller parts.
+4. I'm going to have to think carefully about each step to make sure I'm on the right track.
+5. Let me pause for a moment and make sure I'm considering all the possibilities."
+1,10,control,"1. I need to slow down and not just go with my first thought here.
+2. Okay, let me think this through and not jump to a conclusion.
+3. I'm getting a strong impulse to just pick one, but I should probably consider both options more carefully.
+4. My initial reaction is to just choose the one that sounds right, but I should try to think it through more logically.
+5. I have to fight the urge to just go with what feels right and make sure I'm really thinking it through."
+1,10,generation,"1. I'm trying to think of different ways this could work, to see what makes sense.
+2. Let me consider all the possibilities before making a decision.
+3. What if I look at it from a different perspective, would that change things?
+4. I need to brainstorm some alternative explanations to see what fits best.
+5. Maybe if I break it down into smaller parts, I can find a solution that works."
+1,10,justification,"1. I think this way because it sounds more logical when I say it out loud.
+2. I'm basing my decision on the general rules I've learned about this kind of thing.
+3. It seems to me that the structure of the sentence is what's determining the correctness here.
+4. I've always been taught that consistency is key in these situations, so that's what I'm going with.
+5. My reasoning is that the way it's phrased makes a big difference in how we interpret the meaning."
+1,10,regulation,"1. I'm having a bit of trouble deciding which one to choose, so I'll need to think this through carefully.
+2. This is actually harder than I thought it would be, I'm going to have to slow down and consider my options.
+3. I'm not sure if I'm overthinking this, but I want to make sure I get it right.
+4. Okay, let's take a step back and look at this from a different perspective, maybe that will help clarify things.
+5. I think I need to focus my attention more closely on the question and not get distracted by irrelevant thoughts."
