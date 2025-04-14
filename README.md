@@ -23,17 +23,26 @@ Currently, there is no direct empirical evidence to address this question. Explo
 
 ## Data and Audio Transcription
 
-The data come from Study 2 of Byrd et al. (2023), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test (vCRT) by thinking aloud as they solved each problem.
+The data come from Study 2 of [Byrd et al. (2023)](https://www.mdpi.com/2079-3200/11/4/76), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test (vCRT) by thinking aloud as they solved each problem.
 
-Participants' verbalizations were recorded as audio files and subsequently transcribed using a state-of-the-art automatic speech recognition model: Whisper Large v3 Turbo.
+Participants' verbalizations were recorded as audio files and subsequently transcribed using a state-of-the-art automatic speech recognition model: `Whisper Large v3 Turbo`.
 
 ---
 
 ## Chunking and Scoring of Transcriptions
 
+We used the `meta-llama/Llama-3.3-70B-Instruct` model served via the HuggingFace Inference API.
+
+The generation parameters were set to:
+
+- `temperature = 1`
+- `top_p = 1`
+
+These settings encouraged the model to generate coherent but flexible segmentations of participants' transcriptions into distinct ideas or reasoning steps.
+
 ### Chunking Procedure
 
-Verbalizations were automatically segmented into reasoning chunks using a large language model (LLM). The model was prompted to segment each transcription into coherent units corresponding to distinct ideas, reasoning steps, or meta-comments.
+The model was prompted to segment each transcription into coherent units corresponding to distinct ideas, reasoning steps, or meta-comments.
 
 The chunking prompt was the following:
 
@@ -143,7 +152,7 @@ We examined the distribution of the number of reasoning segments (chunks) per qu
 
 ### By Accuracy
 
-![Histogram of the number of chunks per question by response type (biased vs unbiased).](./Output/histogram_n_chunks_by_response.png)
+![Histogram of the number of chunks per question by accuracy.](./Output/histogram_n_chunks_by_response.png)
 
 *Figure 3. Histogram of the number of chunks per question by response type.*
 
@@ -159,7 +168,7 @@ Lure consideration corresponds to whether participants reported having thought o
 
 ![Histogram of the number of chunks per question by response type and lure consideration.](./Output/histogram_n_chunks_by_response_lure_consideration.png)
 
-*Figure 5. Histogram of the number of chunks per question by response type and lure consideration.*
+*Figure 5. Histogram of the number of chunks per question by accuracy and lure consideration.*
 
 ---
 
@@ -185,23 +194,23 @@ Thus, normalized time provides a positional representation of thought dynamics, 
 
 *Figure 7. Mean trajectory of each deliberation function across all responses.*
 
-### Trajectory by Response Type
+### Trajectory by Accuracy
 
 ![Mean trajectory of deliberation functions by response type (biased vs unbiased).](./Output/trajectory_by_response_loess_preliminary.png)
 
-*Figure 8. Mean trajectory of deliberation functions by response type (biased vs unbiased).*\
+*Figure 8. Mean trajectory of deliberation functions by accuracy.*\
 
 ---
 
 ## Difference in Trajectories Between Response Types
 
-We computed the difference in function trajectories between unbiased and biased responses.
+We computed the difference in function trajectories between incorrect and correct responses.
 
 ### Overall Difference
 
 ![Difference in trajectories between unbiased and biased responses for each deliberation function.](./Output/difference_trajectory_unbiased_biased_faceted_loess_preliminary.png)
 
-*Figure 9. Difference in trajectories (unbiased minus biased) across deliberation functions.*
+*Figure 9. Difference in trajectories (correct minus incorrect) across deliberation functions.*
 
 ---
 
@@ -225,11 +234,11 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ---
 
-## Trajectories by Response Type and Function (GAM)
+## Trajectories by Accuracy and Function (GAM)
 
 ![GAM-predicted trajectories by response type (biased vs unbiased) and deliberation function.](./Output/gam_trajectory_per_response_and_function.png)
 
-*Figure 12. GAM-predicted trajectories by response type and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 12. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
 
 ---
 
@@ -237,7 +246,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
-*Figure 13. GAM-predicted trajectories by lure consideration and response type. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 13. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
 
 ---
 
