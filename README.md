@@ -258,7 +258,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![GAM-predicted trajectories by response type (biased vs unbiased) and deliberation function.](./Output/gam_trajectory_per_response_and_function.png)
 
-*Figure 13. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 13. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
@@ -288,7 +288,7 @@ Note that these findings also align with the results of Byrd et al. (2023): corr
 
 Beyond theoretical insights, our approach offers methodological gains. The use of LLM-based chunking and scoring allows for a fine-grained, automated, and scalable analysis of deliberation dynamics in verbal (audio or text) reasoning data. This method opens the door to modeling individual trajectories of reasoning functions in larger and more naturalistic datasets.
 
---
+---
 
 ## Next Steps
 
@@ -308,17 +308,15 @@ Building on this first, several avenues are open for future work:
   - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
---
+---
 
 ## Complementary Analyses
-
---
 
 ### Trajectories by Lure Consideration (GAM)
 
 ![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
-*Figure 14. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*\
+*Figure 14. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
