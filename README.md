@@ -82,7 +82,7 @@ Chunk 3:
 Be exhaustive.
 ```
 
-For instance, the transcription: "A monkey, a squirrel and a bird are racing to the top of a coconut tree. Who will get the banana first? The monkey, the squirrel or the bird? I'm not really sure. I'm not sure birds eat bananas. I don't really know." was segmented as follows:
+For instance, the transcription: "*A monkey, a squirrel and a bird are racing to the top of a coconut tree. Who will get the banana first? The monkey, the squirrel or the bird? I'm not really sure. I'm not sure birds eat bananas. I don't really know.*" was segmented as follows:
 
 ```text
 1) A monkey, a squirrel and a bird are racing to the top of a coconut tree.
