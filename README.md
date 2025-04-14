@@ -286,7 +286,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 **Byrd et al. Results (2023)**
 
-Note that these findings also align with the results of Byrd et al. (2023): correct responses typically involve more deliberate and reflective processing, while incorrect responses often rely on fast, intuitive answers without reconsideration.
+Note that these findings — although more precise in their depiction of temporal dynamics and in their exploration of deliberation subfunctions — also align with the results of Byrd et al. (2023): correct responses typically involve more deliberate and reflective processing, while incorrect responses often rely on fast, intuitive answers without reconsideration.
 
 **Methodological Implications**
 
@@ -313,6 +313,8 @@ Building on this first, several avenues are open for future work:
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
 - **Use better LLM models**
+
+- **Adopt a more bottom-up, unsupervised approach to classify the functions**: Instead of using a pre-defined taxonomy, we could use clustering or topic modeling techniques to identify distinct reasoning functions based on the LLM-generated chunks. This would allow for a more data-driven exploration of the functions involved in deliberation (complementary).
 
 ---
 
