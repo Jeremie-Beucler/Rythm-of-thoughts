@@ -299,6 +299,8 @@ Note that these findings — although more precise in their depiction of tempora
 
 Beyond theoretical insights, our approach offers methodological gains. The use of LLM-based chunking and scoring allows for a fine-grained, automated, and scalable analysis of deliberation dynamics in verbal (audio or text) reasoning data. This method opens the door to modeling individual trajectories of reasoning functions in larger and more naturalistic datasets.
 
+It could also be used to study interindividual differences in reasoning, and to probe the prevalence and dynamics of deliberation functions in ecological settings. Who knows, it could even be applied to clinical populations or in educational settings to assess the state/development of reasoning skills.
+
 ---
 
 ## Next Steps
@@ -315,7 +317,7 @@ Building on this first, there are several next possible steps:
 
 - **Trajectories through question order**: Examine the evolution of deliberation function trajectories across the sequence of questions within the task (but then, issues if order not randomized because question will be a confounder).
 
-- **Collecting new data or identifying similar datasets**: Apply the method to other think-aloud datasets or collect new data specifically designed to probe deliberation dynamics.
+- **Collecting new data or identifying similar datasets**: Apply the method to other think-aloud datasets or collect new data specifically designed to probe deliberation dynamics, in different tasks or types of reasoning.
 
 - **Participant profiling**: Investigate individual profiles or clusters of participants based on their trajectory patterns, identifying distinct reasoning styles or strategies.
 
