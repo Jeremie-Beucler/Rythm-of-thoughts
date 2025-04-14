@@ -204,7 +204,7 @@ We then examined whether chunk length (measured by word count) differed across f
 
 ### Overall Trajectory
 
-First, let's have a first look at the trajectories using simple LOESS smoothing over the mean function scores.
+First, let's have a first look at the trajectories using simple LOESS smoothing over the mean function scores. Note that the GAMM results below are more robust, this is just a quick first look.
 
 ![Mean trajectory of deliberation functions over normalized time.](./Output/overall_trajectory_loess_preliminary.png)
 
@@ -220,7 +220,7 @@ First, let's have a first look at the trajectories using simple LOESS smoothing 
 
 ## Difference in Trajectories Between Response Types
 
-We computed the difference in function trajectories between incorrect and correct responses.
+We computed the difference in function trajectories between correct and incorrect responses. Here a positive difference indicates that the function is more activated in correct responses than in incorrect ones.
 
 ### Overall Difference
 
@@ -230,27 +230,29 @@ We computed the difference in function trajectories between incorrect and correc
 
 ---
 
-## GAM-Predicted Trajectories
+## GAMM-Predicted Trajectories
 
-We fitted generalized additive models (GAMs) to predict function trajectories.
+We fitted generalized additive mixed models (GAMMs) to predict function trajectories.
 
-GAMs offer a flexible statistical framework that allows us to model the potentially non-linear dynamics of deliberation functions over normalized time. They are particularly well-suited for this analysis because they can capture complex trajectory shapes without making strong assumptions about their form.
+GAMMs offer a flexible statistical framework that allows us to model the potentially non-linear dynamics of deliberation functions over normalized time. They are particularly well-suited for this analysis because they can capture complex trajectory shapes without making strong assumptions about their form.
 
-In addition, GAMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
+In addition, GAMMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
 
-Given the noisy nature of our LLM-annotated data, GAMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
+Given the noisy nature of our LLM-annotated data, GAMMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
 
-**Warning: I am not very used to GAM; so the results may not be perfect yet.**
+**Warning: I am not very used to GAM(M); so the results may not be perfect yet.**
+
+Below is the overall trajectory of each deliberation function (across all responses), as predicted by the GAMM.
 
 ![GAM-predicted trajectories for each deliberation function. Confidence intervals represent 95% CI.](./Output/gam_trajectory_functions_overall_trajectory.png)
 
-*Figure 11. GAM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
+*Figure 11. GAMM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
 
 ---
 
-## Pairwise Differences Between Functions (GAM)
+## Pairwise Differences Between Functions (GAMM)
 
-We computed pairwise differences between function trajectories based on GAM predictions.
+We computed pairwise differences between function trajectories based on GAM predictions (across all responses).
 
 ![Pairwise differences between function trajectories. Grey areas indicate significant differences after FDR correction.](./Output/gam_pairwise_functions_difference_trajectory.png)
 
@@ -258,11 +260,13 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ---
 
-## Trajectories by Accuracy and Function (GAM)
+## Trajectories by Accuracy and Function (GAMM)
+
+Next we can look at the GAMM-predicted trajectories by accuracy, to compare correct and incorrect responses.
 
 ![GAM-predicted trajectories by response type (biased vs unbiased) and deliberation function.](./Output/gam_trajectory_per_response_and_function.png)
 
-*Figure 13. GAM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 13. GAMM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
@@ -296,7 +300,9 @@ Beyond theoretical insights, our approach offers methodological gains. The use o
 
 ## Next Steps
 
-Building on this first, several avenues are open for future work:
+Building on this first, there are several next possible steps:
+
+- **Looking at the slopes instead of the differences**: Beyond examining absolute differences between functions, we could compare their slopes to assess how quickly each function increases or decreases over the course of reasoning. This would provide additional insight into the dynamics and timing of function activation.
 
 - **Validation with human ratings**: Systematically compare the LLM-derived function scores with human-coded ratings on a new set of transcriptions to further validate the approach.
 
@@ -320,16 +326,16 @@ Building on this first, several avenues are open for future work:
 
 ## Complementary Analyses
 
-### Trajectories by Lure Consideration (GAM)
+### Trajectories by Lure Consideration (GAMM)
 
 ![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
-*Figure 14. GAM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 14. GAMM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
-### Trajectories by Familiarity (GAM)
+### Trajectories by Familiarity (GAMM)
 
 ![GAM-predicted trajectories by participant familiarity with the test.](./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png)
 
-*Figure 15. GAM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 15. GAMM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
