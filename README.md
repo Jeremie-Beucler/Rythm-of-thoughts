@@ -1,6 +1,6 @@
 # Rythms of Thought: Exploring the Temporal Trajectories of Deliberation in Reasoning
 
-This document describes the analysis of deliberation function trajectories extracted from verbal reasoning data. Using LLM-based scoring of reasoning segments (chunks), we model how different cognitive functions unfold over time within transcriptions. Here, we use the term trajectory to refer to the evolving activation levels of distinct cognitive functions as reasoning unfolds over time.
+This document describes the analysis of deliberation function trajectories extracted from verbal reasoning data. Using LLM-based scoring of reasoning segments (chunks), we model how different deliberation functions unfold over time within transcriptions. Here, we use the term trajectory to refer to the evolving activation levels of distinct cognitive functions as reasoning unfolds over time.
 
 ---
 
@@ -8,7 +8,7 @@ This document describes the analysis of deliberation function trajectories extra
 
 Understanding how people deliberate when solving reasoning problems is a key question in cognitive psychology. Recent theoretical work by [De Neys (2025)](https://files.osf.io/v1/resources/f7436_v1/providers/osfstorage/67a6196095008bb4100c5869?action=download&direct&version=1) has highlighted critical gaps in our knowledge of the dynamics of deliberation.
 
-Most traditional models treat deliberation as a monolithic process, typically focusing only on response control — the inhibition of an intuitive but incorrect answer. However, De Neys proposes that deliberation involves multiple distinct cognitive functions:
+Most traditional models treat deliberation as a monolithic process, typically focusing only on response control — the inhibition of an intuitive but incorrect answer. However, De Neys suggests that deliberation involves multiple distinct cognitive functions:
 
 - *Response Control*: Inhibiting or resisting an intuitive or prepotent response.
 - *Response Generation*: Actively searching for new answers, alternatives, or hypotheses.
@@ -19,6 +19,7 @@ We use this broad theoretical taxonomy as the basis for our analyses. Crucially,
 
 Currently, there is no direct empirical evidence to address this question. Exploring the temporal dynamics of deliberation functions could provide valuable insights into how people engage in reflective thinking. Our work aims to contribute to this effort by using language models to automatically segment and score verbal reasoning data. This approach allows us to track, at a fine-grained level, how different deliberation functions unfold over time within participants' verbalizations.
 
+On a purely descriptive level, it also allows us to quantify how prevalent each function is in participants' reasoning, and how this varies across different types of responses (e.g., correct vs. incorrect).
 ---
 
 ## Data and Audio Transcription
@@ -304,6 +305,8 @@ Building on this first, there are several next possible steps:
 
 - **Looking at the slopes instead of the differences**: Beyond examining absolute differences between functions, we could compare their slopes to assess how quickly each function increases or decreases over the course of reasoning. This would provide additional insight into the dynamics and timing of function activation.
 
+- **Compute the prevalence of each function**: On a more simple and descriptive level, we could compute the prevalence of each function across all chunks. This would allow us to assess whether the functions are equally prevalent or if some are more dominant in participants' reasoning, and how this varies across different types of responses (e.g., correct vs. incorrect).
+
 - **Validation with human ratings**: Systematically compare the LLM-derived function scores with human-coded ratings on a new set of transcriptions to further validate the approach.
 
 - **Bottom-up taxonomy of deliberation functions**: Use the LLM not only for scoring but also to generate a more data-driven and fine-grained taxonomy of reasoning functions based on participants' transcriptions.
@@ -317,7 +320,6 @@ Building on this first, there are several next possible steps:
 - **Analysis of specific subcases**:
   - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
-
 
 - **Use better LLM models such as GPTs, and improve prompt (e.g., give examples)**
 
