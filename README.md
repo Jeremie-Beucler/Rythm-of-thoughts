@@ -1,4 +1,4 @@
-# Rythm of Thoughts: Exploring the Temporal Trajectories of Deliberation in Reasoning
+# Rythms of Thought: Exploring the Temporal Trajectories of Deliberation in Reasoning
 
 This document describes the analysis of deliberation function trajectories extracted from verbal reasoning data. Using LLM-based scoring of reasoning segments (chunks), we model how different cognitive functions unfold over time within transcriptions. Here, we use the term trajectory to refer to the evolving activation levels of distinct cognitive functions as reasoning unfolds over time.
 
