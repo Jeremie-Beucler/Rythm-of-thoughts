@@ -206,13 +206,13 @@ We then examined whether chunk length (measured by word count) differed across f
 
 ![Mean trajectory of deliberation functions over normalized time.](./Output/overall_trajectory_loess_preliminary.png)
 
-*Figure 8. Mean trajectory of each deliberation function across all responses.*
+*Figure 8. Mean trajectory of each deliberation function across all responses (smoothed using a local regression smoother, LOESS).*
 
 ### Trajectory by Accuracy
 
 ![Mean trajectory of deliberation functions by response type (biased vs unbiased).](./Output/trajectory_by_response_loess_preliminary.png)
 
-*Figure 9. Mean trajectory of deliberation functions by accuracy.*
+*Figure 9. Mean trajectory of deliberation functions by accuracy (smoothed using a local regression smoother, LOESS).*
 
 ---
 
@@ -224,7 +224,7 @@ We computed the difference in function trajectories between incorrect and correc
 
 ![Difference in trajectories between unbiased and biased responses for each deliberation function.](./Output/difference_trajectory_unbiased_biased_faceted_loess_preliminary.png)
 
-*Figure 10. Difference in trajectories (correct minus incorrect) across deliberation functions.*
+*Figure 10. Difference in trajectories (correct minus incorrect) across deliberation functions (smoothed using a local regression smoother, LOESS).*
 
 ---
 
@@ -236,7 +236,7 @@ GAMs offer a flexible statistical framework that allows us to model the potentia
 
 In addition, GAMs include random intercepts for both participants and questions. This accounts for individual variability and question-specific effects, ensuring that the estimated trajectories reflect generalizable patterns rather than idiosyncrasies of the data.
 
-Given the noisy nature of verbal reasoning data, GAMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
+Given the noisy nature of our LLM-annotated data, GAMs provide an important advantage: they smooth the trajectories while preserving meaningful signal. This smoothing facilitates interpretation, allowing us to assess whether the function trajectories are theoretically plausible and robust across participants.
 
 ![GAM-predicted trajectories for each deliberation function. Confidence intervals represent 95% CI.](./Output/gam_trajectory_functions_overall_trajectory.png)
 
