@@ -1,0 +1,352 @@
+---
+title: "Trajectory Analysis LLM"
+author: "Jérémie Beucler"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# --------------------------------------------------------------------
+# Libraries
+# --------------------------------------------------------------------
+library(tidyverse)
+library(zoo)
+library(here)
+library(ggplot2)
+library(ggthemes)
+library(data.table)
+library(ggtext) # For markdown in titles
+library(patchwork) # To combine plots
+library(scales)    # Better axis formatting
+library(viridis)   # Color palette
+library(jtools)
+
+# --------------------------------------------------------------------
+# Load Data
+# --------------------------------------------------------------------
+# Load scored chunks
+chunks_scored <- read.csv("./Output/scored_chunks.csv")
+
+# Load full data_long (with response etc.)
+data_long <- read.csv("./Data/data_long.csv")
+
+# --------------------------------------------------------------------
+# Define Custom Colors for Functions
+# --------------------------------------------------------------------
+function_colors <- c(
+  "Control" = "#D62728",        # Red
+  "Generation" = "#1F77B4",     # Blue
+  "Justification" = "#FF7F0E",  # Orange
+  "Regulation" = "#2CA02C"      # Green
+)
+
+# --------------------------------------------------------------------
+# Merge additional variables
+# --------------------------------------------------------------------
+chunks_scored <- chunks_scored %>%
+  left_join(
+    data_long %>% select(subject_id, question, response) %>% distinct(),
+    by = c("subject_id", "question")
+  )
+
+# --------------------------------------------------------------------
+# Compute Number of Words in Transcription_new
+# --------------------------------------------------------------------
+transcription_lengths <- data_long %>%
+  select(subject_id, question, transcription_new) %>%
+  mutate(
+    n_words = str_count(transcription_new, "\\S+")
+  )
+
+# --------------------------------------------------------------------
+# Merge Word Count to Chunks Scored
+# --------------------------------------------------------------------
+chunks_scored <- chunks_scored %>%
+  left_join(transcription_lengths %>% select(subject_id, question, n_words),
+            by = c("subject_id", "question"))
+
+# --------------------------------------------------------------------
+# Filter to Keep Only Transcriptions with <= 100 Words
+# --------------------------------------------------------------------
+chunks_scored <- chunks_scored %>%
+  filter(n_words <= 100) %>% 
+  filter(response == "Reflect" | response == "Lure")
+
+# --------------------------------------------------------------------
+# Check
+# --------------------------------------------------------------------
+summary(chunks_scored$n_words)
+print(dim(chunks_scored))
+```
+
+```{r}
+# --------------------------------------------------------------------
+# Compute Normalized Position per Chunk
+# --------------------------------------------------------------------
+chunks_scored <- chunks_scored %>%
+  group_by(subject_id, question) %>%
+  arrange(chunk_id) %>%
+  mutate(
+    n_chunks = n(),
+    normalized_position = ifelse(n_chunks == 1, 0, (chunk_id - 1) / (n_chunks - 1))
+  ) %>%
+  ungroup()
+
+# --------------------------------------------------------------------
+# Pivot Longer for Functions
+# --------------------------------------------------------------------
+chunks_long <- chunks_scored %>%
+  pivot_longer(
+    cols = c(response_control, response_generation, response_justification, response_regulation),
+    names_to = "deliberation_function",
+    values_to = "score"
+  )
+
+chunks_long = chunks_long %>%
+  mutate(deliberation_function = recode(deliberation_function,
+                                        response_control = "Control",
+                                        response_generation = "Generation",
+                                        response_justification = "Justification",
+                                        response_regulation = "Regulation"))
+
+
+# --------------------------------------------------------------------
+# Aggregate Mean Trajectory per Function
+# --------------------------------------------------------------------
+mean_trajectory_norm <- chunks_long %>%
+  group_by(deliberation_function, normalized_position) %>%
+  summarise(score = mean(score, na.rm = TRUE)) %>%
+  ungroup()
+
+# --------------------------------------------------------------------
+# Smoothing Function
+# --------------------------------------------------------------------
+smooth_trajectory <- function(df, window = 1) {
+  df %>%
+    group_by(deliberation_function) %>%
+    arrange(normalized_position) %>%
+    mutate(score = rollmean(score, k = window, fill = NA, align = "center")) %>%
+    drop_na()
+}
+```
+
+```{r}
+# --------------------------------------------------------------------
+# Compute Number of Chunks per Question
+# --------------------------------------------------------------------
+n_chunks_df <- chunks_scored %>%
+  group_by(subject_id, question, response) %>%
+  summarise(n_chunks = max(chunk_id)) %>%
+  ungroup()
+
+# --------------------------------------------------------------------
+# Summary Statistics (Overall)
+# --------------------------------------------------------------------
+print("Summary Statistics for Number of Chunks per Question (Overall):")
+summary(n_chunks_df$n_chunks)
+
+# --------------------------------------------------------------------
+# Summary Statistics by Response
+# --------------------------------------------------------------------
+print("Summary Statistics for Number of Chunks per Question by Response:")
+
+n_chunks_df %>%
+  group_by(response) %>%
+  summarise(
+    count = n(),
+    mean = mean(n_chunks),
+    sd = sd(n_chunks),
+    min = min(n_chunks),
+    p25 = quantile(n_chunks, 0.25),
+    median = median(n_chunks),
+    p75 = quantile(n_chunks, 0.75),
+    max = max(n_chunks)
+  )
+
+# --------------------------------------------------------------------
+# Histogram of Number of Chunks (Overall)
+# --------------------------------------------------------------------
+ggplot(n_chunks_df, aes(x = n_chunks)) +
+  geom_histogram(bins = 15, fill = "#1f77b4", color = "white", alpha = 0.8) +
+  geom_density(aes(y = ..count..), color = "black", linewidth = 1) +
+  labs(
+    x = "Number of Chunks per Question",
+    y = "Count",
+    title = "Distribution of Number of Chunks per Question"
+  ) +
+  theme_minimal()
+
+ggsave("./Output/histogram_n_chunks_overall.png", dpi = 600, width = 8, height = 5)
+
+# --------------------------------------------------------------------
+# Histogram of Number of Chunks (Grouped by Response)
+# --------------------------------------------------------------------
+ggplot(n_chunks_df, aes(x = n_chunks, fill = response)) +
+  geom_histogram(bins = 15, alpha = 0.7, position = "identity", color = "white") +
+  facet_wrap(~response, ncol = 2) +
+  labs(
+    x = "Number of Chunks per Question",
+    y = "Count",
+    title = "Distribution of Number of Chunks per Question by Response"
+  ) +
+  theme_minimal()
+
+ggsave("./Output/histogram_n_chunks_by_response.png", dpi = 600, width = 10, height = 6)
+```
+
+
+
+
+
+```{r}
+# --------------------------------------------------------------------
+# Plot Mean Trajectory (All Functions Together)
+# --------------------------------------------------------------------
+smoothed_norm <- smooth_trajectory(mean_trajectory_norm, window = 1)
+
+ggplot(smoothed_norm, aes(x = normalized_position, y = score, color = deliberation_function)) +
+  #geom_line(size = 1.2, alpha = 0.4) +
+  geom_smooth(method = "loess", size = 1, se = FALSE, span = 0.6) +
+  theme_apa() +
+  scale_color_manual(values = function_colors) +
+  labs(x = "Normalized Position in Text",
+       y = "Mean Score",
+       color = "Deliberation Function")
+
+ggsave("./Output/mean_trajectory_norm_chunk.png", dpi = 600, width = 12, height = 6)
+```
+
+
+```{r}
+# --------------------------------------------------------------------
+# Aggregate Mean Trajectory per Normalized Position and Response
+# --------------------------------------------------------------------
+mean_trajectory_norm_resp <- chunks_long %>%
+  group_by(response, deliberation_function, normalized_position) %>%
+  summarise(score = mean(score, na.rm = TRUE)) %>%
+  ungroup()
+
+# --------------------------------------------------------------------
+# Smoothing Function
+# --------------------------------------------------------------------
+smooth_trajectory_response <- function(df, window = 1) {
+  df %>%
+    group_by(response, deliberation_function) %>%
+    arrange(normalized_position) %>%
+    mutate(score = zoo::rollmean(score, k = window, fill = NA, align = "center")) %>%
+    drop_na()
+}
+
+# --------------------------------------------------------------------
+# Apply Smoothing
+# --------------------------------------------------------------------
+smoothed_resp <- smooth_trajectory_response(mean_trajectory_norm_resp, window = 1)
+```
+
+```{r}
+ggplot(smoothed_resp, aes(x = normalized_position, y = score, color = deliberation_function)) +
+  geom_smooth(method = "loess", size = 1, se = FALSE, span = 0.5) + # 2 rows, 1 column
+  facet_wrap(~response, scales = "free_y", ncol = 1) +
+  theme_apa() +
+  scale_color_manual(values = function_colors) +
+  labs(x = "Normalized Position in Text",
+       y = "Mean Score",
+       color = "Deliberation Function")
+
+ggsave("./Output/mean_trajectory_norm_chunk_by_response.png", dpi = 600, width = 12, height = 10)
+```
+
+
+
+```{r}
+# --------------------------------------------------------------------
+# Compute Mean Trajectory by Response
+# --------------------------------------------------------------------
+mean_trajectory_resp <- chunks_long %>%
+  group_by(response, deliberation_function, normalized_position) %>%
+  summarise(score = mean(score, na.rm = TRUE)) %>%
+  ungroup()
+
+# --------------------------------------------------------------------
+# Pivot Wider: Separate Reflect and Lure
+# --------------------------------------------------------------------
+trajectory_diff <- mean_trajectory_resp %>%
+  filter(response %in% c("Reflect", "Lure")) %>%
+  pivot_wider(
+    names_from = response,
+    values_from = score
+  ) %>%
+  mutate(difference = Reflect - Lure)
+
+# --------------------------------------------------------------------
+# Smoothing Function
+# --------------------------------------------------------------------
+smooth_trajectory_diff <- function(df, window = 1) {
+  df %>%
+    group_by(deliberation_function) %>%
+    arrange(normalized_position) %>%
+    mutate(difference = zoo::rollmean(difference, k = window, fill = NA, align = "center")) %>%
+    drop_na()
+}
+
+# --------------------------------------------------------------------
+# Apply Smoothing
+# --------------------------------------------------------------------
+smoothed_diff <- smooth_trajectory_diff(trajectory_diff, window = 1)
+```
+
+
+```{r}
+# --------------------------------------------------------------------
+# Plot Difference Trajectories with Annotations
+# --------------------------------------------------------------------
+p_diff <- ggplot(smoothed_diff, aes(x = normalized_position, y = difference, color = deliberation_function)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_smooth(method = "loess", size = 1.2, se = FALSE, span = 0.4) +
+  scale_color_manual(values = function_colors) +
+  annotate("text", x = 0.05, y = max(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
+           label = "Higher for Reflect", hjust = 0, size = 3) +
+  annotate("text", x = 0.05, y = min(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
+           label = "Higher for Lure", hjust = 0, size = 3) +
+  theme_apa() +
+  coord_cartesian(ylim = c(-25, 30)) +
+  labs(
+    x = "Normalized Position in Text",
+    y = "Difference in Mean Score (Reflect - Lure)",
+    color = "Deliberation Function"
+  )
+
+p_diff
+
+ggsave("./Output/difference_trajectory_reflect_vs_lure_annotated.png", p_diff, dpi = 600, width = 10, height = 6)
+```
+
+```{r}
+# --------------------------------------------------------------------
+# Plot Difference Trajectories by Function (Separate Facets)
+# --------------------------------------------------------------------
+p_diff_facets <- ggplot(smoothed_diff, aes(x = normalized_position, y = difference, color = deliberation_function)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_smooth(method = "loess", size = 1.2, se = FALSE, span = 0.5) +
+  facet_wrap(~deliberation_function, ncol = 2, scales = "free_y") +
+  scale_color_manual(values = function_colors, guide = "none") +
+  # annotate("text", x = 0.05, y = max(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
+  #          label = "Higher for Reflect", hjust = 0, size = 3) +
+  # annotate("text", x = 0.05, y = min(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
+  #          label = "Higher for Lure", hjust = 0, size = 3) +
+  theme_apa() +
+  labs(
+    x = "Normalized Position in Text",
+    y = "Difference in Mean Score (Reflect - Lure)"
+  )
+
+p_diff_facets
+
+ggsave("./Output/difference_trajectory_reflect_vs_lure_facets.png", p_diff_facets, dpi = 600, width = 12, height = 8)
+```
+
+
