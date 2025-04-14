@@ -335,7 +335,7 @@ Building on this first, there are several next possible steps:
 
 - **Validation with human ratings**: Systematically compare the LLM-derived function scores with human-coded ratings on a new set of transcriptions to further validate the approach.
 
-- **Bottom-up taxonomy of deliberation functions**: Use the LLM not only for scoring but also to generate a more data-driven and fine-grained taxonomy of reasoning functions based on participants' transcriptions.
+- **Bottom-up taxonomy of deliberation functions**: Use the LLM not only for scoring but also to generate a more data-driven and fine-grained taxonomy of reasoning functions based on participants' transcriptions. Or similarly, use clustering on embeddings or topic modeling techniques to identify distinct reasoning functions based on the LLM-generated chunks. This would allow for a more data-driven exploration of the functions involved in deliberation (complementary).
 
 - **Trajectories through question order**: Examine the evolution of deliberation function trajectories across the sequence of questions within the task (but then, issues if order not randomized because question will be a confounder).
 
@@ -348,8 +348,6 @@ Building on this first, there are several next possible steps:
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
 - **Use better LLM models such as GPTs, and improve prompt (e.g., give examples)**
-
-- **Adopt a more bottom-up, unsupervised approach to classify the functions**: Instead of using a pre-defined taxonomy, we could use clustering or topic modeling techniques to identify distinct reasoning functions based on the LLM-generated chunks. This would allow for a more data-driven exploration of the functions involved in deliberation (complementary).
 
 ---
 
