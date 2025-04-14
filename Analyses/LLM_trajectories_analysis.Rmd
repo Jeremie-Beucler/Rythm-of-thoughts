@@ -578,7 +578,7 @@ smoothed_resp <- smooth_trajectory_response(mean_trajectory_norm_resp, window = 
 ggplot(smoothed_resp, aes(x = normalized_position, y = score, color = deliberation_function)) +
   #geom_line(size = 1, alpha = 0.3) +
   geom_smooth(method = "loess", size = 1, se = FALSE, span = 1) + # 2 rows, 1 column
-  facet_wrap(~response, scales = "free_y", ncol = 1) +
+  facet_wrap(~response, ncol = 1) +
   theme_apa() +
   scale_color_manual(values = function_colors) +
   labs(x = "Normalized Position in Text",
@@ -662,12 +662,8 @@ p_diff_facets <- ggplot(smoothed_diff, aes(x = normalized_position, y = differen
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
   #geom_line(size = 1, alpha = 0.3) +
   geom_smooth(method = "loess", size = 1.2, se = FALSE, span = 1) +
-  facet_wrap(~deliberation_function, ncol = 2, scales = "free_y") +
+  facet_wrap(~deliberation_function, ncol = 2) +
   scale_color_manual(values = function_colors, guide = "none") +
-  # annotate("text", x = 0.05, y = max(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
-  #          label = "Higher for Correct", hjust = 0, size = 3) +
-  # annotate("text", x = 0.05, y = min(smoothed_diff$difference, na.rm = TRUE) * 0.93, 
-  #          label = "Higher for Incorrect", hjust = 0, size = 3) +
   theme_apa() +
   labs(
     x = "Normalized Position in Text",
@@ -764,7 +760,7 @@ p_final <- ggplot() +
               aes(x = normalized_position, ymin = pred - 1.96 * se, ymax = pred + 1.96 * se, fill = deliberation_function),
               alpha = 0.2, color = NA) +
   
-  facet_wrap(~deliberation_function, ncol = 2, scales = "free_y") +
+  facet_wrap(~deliberation_function, ncol = 2) +
   
   theme_apa() +
   
@@ -922,8 +918,6 @@ ggsave("./Output/gam_pairwise_functions_difference_trajectory.png",
 ## By response
 
 ```{r}
-
-
 # ----------------------------------------------------------------------------
 # Fit GAM Model with Beta family and Random Effects
 # ----------------------------------------------------------------------------
@@ -1055,7 +1049,7 @@ p_final <- ggplot() +
             aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
             fill = "grey30", alpha = 0.1) +
   
-  facet_wrap(~deliberation_function, ncol = 2, scales = "free_y") +
+  facet_wrap(~deliberation_function, ncol = 2) +
   
   scale_color_manual(values = c("Correct" = "forestgreen",
                                 "Incorrect"   = "tomato3")) +
@@ -1210,7 +1204,7 @@ p_final <- ggplot() +
             aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
             fill = "grey30", alpha = 0.1) +
   
-  facet_grid(response ~ deliberation_function, scales = "free_y") +
+  facet_grid(response ~ deliberation_function) +
   
 scale_color_manual(values = c("Lure Non-Considered" = "forestgreen",
                                 "Lure Considered"   = "tomato3")) +
