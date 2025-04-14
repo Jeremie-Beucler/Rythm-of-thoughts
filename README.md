@@ -318,6 +318,7 @@ Building on this first, there are several next possible steps:
   - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
+
 - **Use better LLM models such as GPTs, and improve prompt (e.g., give examples)**
 
 - **Adopt a more bottom-up, unsupervised approach to classify the functions**: Instead of using a pre-defined taxonomy, we could use clustering or topic modeling techniques to identify distinct reasoning functions based on the LLM-generated chunks. This would allow for a more data-driven exploration of the functions involved in deliberation (complementary).
