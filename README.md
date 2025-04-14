@@ -26,6 +26,10 @@ On a purely descriptive level, it also allows us to quantify how prevalent each 
 
 The data come from Study 2 of [Byrd et al. (2023)](https://www.mdpi.com/2079-3200/11/4/76), conducted online with 102 adult participants from Prolific. Participants completed a verbal version of the Cognitive Reflection Test (vCRT) by thinking aloud as they solved each problem.
 
+![Verbal CRT.](./Output/verbal_CRT_Sirota.png)
+
+*Figure 1. Items from the verbal version of the Cognitive Reflection Test (vCRT; [Sirota et al., 2021](https://onlinelibrary.wiley.com/doi/abs/10.1002/bdm.2213)).*
+
 Participants' verbalizations were recorded as audio files. We subsequently transcribed using a state-of-the-art automatic speech recognition model: `Whisper Large v3 Turbo` (because the automatic transcription already present in the dataset was of poor quality).
 
 ---
@@ -124,6 +128,12 @@ Response Regulation: [score between 0 and 100]
 [Optional broad label for a different function — only if clearly needed]
 ```
 
+As an example, here are several representative chunks for the different functions:
+
+![Representative chunks](./Output/representative_chunks.png)
+
+*Figure 2. Representative chunks for each deliberation function. The first column shows the function name and the second column shows the chunk text.*
+
 ## LLM Function Scores Correlation and Validation
 
 We examined the relationships between the four deliberation functions scored by the LLM: Control, Generation, Justification, and Regulation. This analysis allows us to check whether the functions capture distinct aspects of the reasoning process, as theoretically expected.
@@ -137,7 +147,7 @@ These ratings were assigned based on the procedure described by Byrd et al., wit
 
 ![Correlation heatmap between LLM function scores and hand-coded variables.](./Output/deliberation_function_handscored_variables_correlation_heatmap_handscored.png)
 
-*Figure 1. Correlation heatmap between LLM function scores and hand-coded variables from Byrd et al. (2023). This joint analysis allows us to verify whether LLM-derived functions capture distinct constructs while aligning with human-rated indicators. Only significant correlations (p < .05) are shown.*
+*Figure 3. Correlation heatmap between LLM function scores and hand-coded variables from Byrd et al. (2023). This joint analysis allows us to verify whether LLM-derived functions capture distinct constructs while aligning with human-rated indicators. Only significant correlations (p < .05) are shown.*
 
 ---
 
@@ -149,13 +159,13 @@ We can have a look at the distribution of the number of reasoning segments (chun
 
 ![Histogram of the number of chunks per question.](./Output/histogram_n_chunks_overall.png)
 
-*Figure 2. Histogram showing the distribution of the number of reasoning chunks per question.*
+*Figure 4. Histogram showing the distribution of the number of reasoning chunks per question.*
 
 ### By Accuracy
 
 ![Histogram of the number of chunks per question by accuracy.](./Output/histogram_n_chunks_by_response.png)
 
-*Figure 3. Histogram of the number of chunks per question by response type.*
+*Figure 5. Histogram of the number of chunks per question by response type.*
 
 ### By Lure Consideration
 
@@ -163,13 +173,13 @@ Lure consideration corresponds to whether participants reported having thought o
 
 ![Histogram of the number of chunks per question by lure consideration.](./Output/histogram_n_chunks_by_lure_consideration.png)
 
-*Figure 4. Histogram of the number of chunks per question by lure consideration.*
+*Figure 6. Histogram of the number of chunks per question by lure consideration.*
 
 ### By Accuracy and Lure Consideration
 
 ![Histogram of the number of chunks per question by response type and lure consideration.](./Output/histogram_n_chunks_by_response_lure_consideration.png)
 
-*Figure 5. Histogram of the number of chunks per question by accuracy and lure consideration.*
+*Figure 7. Histogram of the number of chunks per question by accuracy and lure consideration.*
 
 ---
 
@@ -201,7 +211,7 @@ We then examined whether chunk length (measured by word count) differed across f
 
 ![Boxplot of word count per chunk by dominant function.](./Output/boxplot_word_count.png)
 
-*Figure 7. Distribution of word count per chunk by dominant function. Points represent individual chunks; yellow markers indicate the mean word count per function.*
+*Figure 8. Distribution of word count per chunk by dominant function. Points represent individual chunks; yellow markers indicate the mean word count per function.*
 
 ### Overall Trajectory
 
@@ -209,13 +219,13 @@ First, let's have a first look at the trajectories using simple LOESS smoothing 
 
 ![Mean trajectory of deliberation functions over normalized time.](./Output/overall_trajectory_loess_preliminary.png)
 
-*Figure 8. Mean trajectory of each deliberation function across all responses (smoothed using a local regression smoother, LOESS).*
+*Figure 9. Mean trajectory of each deliberation function across all responses (smoothed using a local regression smoother, LOESS).*
 
 ### Trajectory by Accuracy
 
 ![Mean trajectory of deliberation functions by response type (biased vs unbiased).](./Output/trajectory_by_response_loess_preliminary.png)
 
-*Figure 9. Mean trajectory of deliberation functions by accuracy (smoothed using a local regression smoother, LOESS).*
+*Figure 10. Mean trajectory of deliberation functions by accuracy (smoothed using a local regression smoother, LOESS).*
 
 ---
 
@@ -227,7 +237,7 @@ We computed the difference in function trajectories between correct and incorrec
 
 ![Difference in trajectories between unbiased and biased responses for each deliberation function.](./Output/difference_trajectory_unbiased_biased_faceted_loess_preliminary.png)
 
-*Figure 10. Difference in trajectories (correct minus incorrect) across deliberation functions (smoothed using a local regression smoother, LOESS).*
+*Figure 11. Difference in trajectories (correct minus incorrect) across deliberation functions (smoothed using a local regression smoother, LOESS).*
 
 ---
 
@@ -247,7 +257,7 @@ Below is the overall trajectory of each deliberation function (across all respon
 
 ![GAM-predicted trajectories for each deliberation function. Confidence intervals represent 95% CI.](./Output/gam_trajectory_functions_overall_trajectory.png)
 
-*Figure 11. GAMM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
+*Figure 12. GAMM-predicted trajectories for each deliberation function. Shaded areas represent 95% confidence intervals.*
 
 ---
 
@@ -257,7 +267,7 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![Pairwise differences between function trajectories. Grey areas indicate significant differences after FDR correction.](./Output/gam_pairwise_functions_difference_trajectory.png)
 
-*Figure 12. Pairwise differences between deliberation function trajectories. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 13. Pairwise differences between deliberation function trajectories. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 *Note*: beware, here the scales of the y-axes are not the same across panels.
 
@@ -269,7 +279,7 @@ Next we can look at the GAMM-predicted trajectories by accuracy, to compare corr
 
 ![GAM-predicted trajectories by response type (biased vs unbiased) and deliberation function.](./Output/gam_trajectory_per_response_and_function.png)
 
-*Figure 13. GAMM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 14. GAMM-predicted trajectories by accuracy and deliberation function. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
@@ -337,7 +347,7 @@ Building on this first, there are several next possible steps:
 
 ![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered; self-reported) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
-*Figure 14. GAMM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 15. GAMM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
 ---
 
@@ -347,4 +357,4 @@ The participants also indicated whether they were familiar with the vCRT materia
 
 ![GAM-predicted trajectories by participant familiarity with the test.](./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png)
 
-*Figure 15. GAMM-predicted trajectories by participant familiarity with the vCRT material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 16. GAMM-predicted trajectories by participant familiarity with the vCRT material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
