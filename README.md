@@ -1,6 +1,6 @@
-# Rythm of Thoughts: Exploring the Dynamics of Deliberation in Reasoning
+# Rythm of Thoughts: Exploring the Temporal Trajectories of Deliberation in Reasoning
 
-This document describes the analysis of deliberation function trajectories extracted from verbal reasoning data. Using LLM-based scoring of reasoning segments (chunks), we model how different cognitive functions unfold over time within transcriptions.
+This document describes the analysis of deliberation function trajectories extracted from verbal reasoning data. Using LLM-based scoring of reasoning segments (chunks), we model how different cognitive functions unfold over time within transcriptions. Here, we use the term trajectory to refer to the evolving activation levels of distinct cognitive functions as reasoning unfolds over time.
 
 ---
 
@@ -42,7 +42,7 @@ These settings encouraged the model to generate coherent but flexible segmentati
 
 ### Chunking Procedure
 
-The model was prompted to segment each transcription into coherent units corresponding to distinct ideas, reasoning steps, or meta-comments.
+The model was prompted to segment each transcription into coherent units corresponding to distinct ideas, reasoning steps, or meta-comments. Each chunk represents a semantically and functionally coherent unit of verbalization, corresponding to a single cognitive step or thought.
 
 The chunking prompt was the following:
 
@@ -268,14 +268,45 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 - Generation happens early
 - Control happens later
-- Justification comes even later
-- Regulation stays low overall — increasing a bit at the end (likely to check or monitor the response).
+- Justification happens later too
+- Regulation stays low overall — increasing slightly at the end (likely to check or monitor the final answer?)
 
 **Correct vs. Incorrect Responses Comparison**
-- Generation happens even earlier for biased responses — they jump quickly to an answer. Unbiased participants take more time.
-- Control shows the clearest difference — unbiased participants show much more Control all along, while biased participants stay flat and low.
-- Justification is higher (and later) for unbiased participants.
+
+- Generation happens even earlier for incorrect responses — participants jump quickly to an answer without extensive search. Correct responders take more time to generate options.
+- Control shows the clearest difference — correct responders show much more Control throughout their reasoning, while incorrect responders stay low and quite flat.
+- Justification is higher (and later) for correct responders — they verbalize more reasons for their choices.
 - Regulation doesn’t differ much — it stays low for both groups, increasing slightly at the end.
+
+---
+
+**Byrd et al. Results (2023)**
+
+Note that these findings also align with the results of Byrd et al. (2023): correct responses typically involve more deliberate and reflective processing, while incorrect responses often rely on fast, intuitive answers without reconsideration.
+
+**Methodological Implications**
+
+Beyond theoretical insights, our approach offers methodological gains. The use of LLM-based chunking and scoring allows for a fine-grained, automated, and scalable analysis of deliberation dynamics in verbal (audio or text) reasoning data. This method opens the door to modeling individual trajectories of reasoning functions in larger and more naturalistic datasets.
+
+--
+
+## Next Steps
+
+Building on this first, several avenues are open for future work:
+
+- **Validation with human ratings**: Systematically compare the LLM-derived function scores with human-coded ratings on a new set of transcriptions to further validate the approach.
+
+- **Bottom-up taxonomy of deliberation functions**: Use the LLM not only for scoring but also to generate a more data-driven and fine-grained taxonomy of reasoning functions based on participants' transcriptions.
+
+- **Trajectories through question order**: Examine the evolution of deliberation function trajectories across the sequence of questions within the task (but then, issues if order not randomized because question will be a confounder).
+
+- **Collecting new data or identifying similar datasets**: Apply the method to other think-aloud datasets or collect new data specifically designed to probe deliberation dynamics.
+
+- **Participant profiling**: Investigate individual profiles or clusters of participants based on their trajectory patterns, identifying distinct reasoning styles or strategies.
+
+- **Analysis of specific subcases**:
+  - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
+  - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
 --
 
@@ -295,4 +326,4 @@ We computed pairwise differences between function trajectories based on GAM pred
 
 ![GAM-predicted trajectories by participant familiarity with the test.](./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png)
 
-*Figure 15. GAM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).
+*Figure 15. GAM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
