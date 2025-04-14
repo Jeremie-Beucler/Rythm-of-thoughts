@@ -902,7 +902,7 @@ for(name in names(diff_dfs)) {
       x = "Normalized Position in Verbalization",
       y = "Difference in Score"
     ) +
-    theme_minimal(base_size = 14)
+    theme_apa()
   
   diff_plots[[name]] <- p
 }
