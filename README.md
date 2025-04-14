@@ -318,7 +318,7 @@ Building on this first, there are several next possible steps:
   - Correct "intuitive" responses: Cases where the correct answer is generated quickly without much evidence of control or justification.
   - Incorrect "deliberate" responses: Cases where participants engage in effortful reasoning but still arrive at an incorrect answer.
 
-- **Use better LLM models**
+- **Use better LLM models such as GPTs, and improve prompt (e.g., give examples)**
 
 - **Adopt a more bottom-up, unsupervised approach to classify the functions**: Instead of using a pre-defined taxonomy, we could use clustering or topic modeling techniques to identify distinct reasoning functions based on the LLM-generated chunks. This would allow for a more data-driven exploration of the functions involved in deliberation (complementary).
 
@@ -328,7 +328,7 @@ Building on this first, there are several next possible steps:
 
 ### Trajectories by Lure Consideration (GAMM)
 
-![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
+![GAM-predicted trajectories by lure consideration (lure considered vs lure non-considered; self-reported) and response type.](./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png)
 
 *Figure 14. GAMM-predicted trajectories by lure consideration and accuracy. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
 
@@ -336,6 +336,8 @@ Building on this first, there are several next possible steps:
 
 ### Trajectories by Familiarity (GAMM)
 
+The participants also indicated whether they were familiar with the vCRT material. We can look at the trajectories by familiarity (familiar vs unfamiliar).
+
 ![GAM-predicted trajectories by participant familiarity with the test.](./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png)
 
-*Figure 15. GAMM-predicted trajectories by participant familiarity with the test material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
+*Figure 15. GAMM-predicted trajectories by participant familiarity with the vCRT material. Shaded grey areas indicate significant differences (p < .05, FDR corrected).*
