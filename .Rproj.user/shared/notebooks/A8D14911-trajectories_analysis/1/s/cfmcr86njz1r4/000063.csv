@@ -1,2 +1,0 @@
-"0","  "
-"0","  ggsave(""./Output/mean_trajectory_norm_facets.png"", dpi = 600, width = 12, height = 8)"
