@@ -5,6 +5,8 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+# Trajectory Analysis of Deliberation Functions
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -205,7 +207,7 @@ ggsave("./Output/deliberation_function_handscored_variables_correlation_heatmap_
 ```
 
 
-
+## Chunks distributions
 
 ```{r}
 # --------------------------------------------------------------------
@@ -410,6 +412,8 @@ ggplot(chunks_dominant, aes(x = dominant_function, y = char_count, fill = domina
   theme(legend.position = "none")
 ```
 
+## Representative chunks
+
 ```{r}
 ###
 # 1) Copy data & initialize columns
@@ -526,8 +530,188 @@ representative_chunks_annotated <- representative_chunks %>%
 write.csv(representative_chunks_annotated, "./Output/representative_chunks.csv", row.names = FALSE)
 ```
 
+## Overall Distribution of Deliberation Functions
+
+### At the chunk level
+
+```{r}
+ggplot(chunks_long, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  geom_violin(trim = TRUE, alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "yellow") + # errorbars
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "yellow") +
+  labs(
+    x = "Deliberation Function",
+    y = "Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+# colplot with se
+ggplot(chunks_long, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "black") +
+  labs(
+    x = "Deliberation Function",
+    y = "Average Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+# now per accuracy
+# violin
+ggplot(chunks_long, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  geom_violin(trim = TRUE, alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "yellow") + # errorbars
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "yellow") +
+  facet_wrap(~response) +
+  labs(
+    x = "Deliberation Function",
+    y = "Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+ggplot(chunks_long, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "black") +
+  facet_wrap(~response) +
+  labs(
+    x = "Deliberation Function",
+    y = "Average Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+```
+
+### At the question level
+
+```{r}
+# first get mean by question
+chunks_long_question <- chunks_long %>%
+  group_by(subject_id, question, deliberation_function) %>%
+  summarise(score = mean(score, na.rm = TRUE)) %>%
+  ungroup()
+
+# now plot
+ggplot(chunks_long_question, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  geom_violin(trim = TRUE, alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "yellow") + # errorbars
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "yellow") +
+  labs(
+    x = "Deliberation Function",
+    y = "Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+ggplot(chunks_long_question, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "black") +
+  labs(
+    x = "Deliberation Function",
+    y = "Average Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+# now per accuracy
+chunks_long_question <- chunks_long %>%
+  group_by(subject_id, question, deliberation_function, response) %>%
+  summarise(score = mean(score, na.rm = TRUE)) %>%
+  ungroup()
+
+ggplot(chunks_long_question, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  geom_violin(trim = TRUE, alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "yellow") + # errorbars
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "yellow") +
+  facet_wrap(~response) +
+  labs(
+    x = "Deliberation Function",
+    y = "Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+
+ggplot(chunks_long_question, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.3, color = "black") +
+  facet_wrap(~response) +
+  labs(
+    x = "Deliberation Function",
+    y = "Average Score"
+  ) +
+  theme_apa() +
+  theme(legend.position = "none")
+```
+
+## Deliberation Functions as a Function of Total Chunk Number
+
+```{r}
+# create new variable named chunk_max, which is the highest chunk id for a given question/subject
+chunks_long <- chunks_long %>%
+  group_by(subject_id, question) %>%
+  mutate(chunk_max = max(chunk_id)) %>%
+  ungroup()
 
 
+chunks_long_summary <- chunks_long %>%
+  group_by(chunk_max, deliberation_function) %>%
+  summarise(
+    mean_score = mean(score, na.rm = TRUE),
+    se_score = sd(score, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+# Plot mean score with standard error ribbon
+ggplot(chunks_long_summary, aes(x = chunk_max, y = mean_score, color = deliberation_function, fill = deliberation_function)) +
+  geom_ribbon(aes(ymin = mean_score - se_score, ymax = mean_score + se_score), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  theme_apa() +
+  scale_color_manual(values = function_colors) +
+  scale_fill_manual(values = function_colors) +
+  labs(
+    x = "Total Number of Chunks",
+    y = "Mean Score (± SE)",
+    color = "Deliberation Function",
+    fill = "Deliberation Function"
+  )
+
+# now per accuracy using facet_wrap
+chunks_long_summary <- chunks_long %>%
+  group_by(chunk_max, deliberation_function, response) %>%
+  summarise(
+    mean_score = mean(score, na.rm = TRUE),
+    se_score = sd(score, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+ggplot(chunks_long_summary, aes(x = chunk_max, y = mean_score, color = deliberation_function, fill = deliberation_function)) +
+  geom_ribbon(aes(ymin = mean_score - se_score, ymax = mean_score + se_score), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  theme_apa() +
+  scale_color_manual(values = function_colors) +
+  scale_fill_manual(values = function_colors) +
+  labs(
+    x = "Total Number of Chunks",
+    y = "Mean Score (± SE)",
+    color = "Deliberation Function",
+    fill = "Deliberation Function"
+  ) +
+  facet_wrap(~response)
+
+
+```
+*Note*: as we saw from the chunk distributions, after ~8-10 chunks, it is not really reliable (since there are so few of them).
+
+## Trajectories
+
+### Descriptive
+
+#### Overall
 
 ```{r}
 # --------------------------------------------------------------------
@@ -573,6 +757,8 @@ smooth_trajectory_response <- function(df, window = 1) {
 # --------------------------------------------------------------------
 smoothed_resp <- smooth_trajectory_response(mean_trajectory_norm_resp, window = 1)
 ```
+
+#### Per Accuracy
 
 ```{r}
 ggplot(smoothed_resp, aes(x = normalized_position, y = score, color = deliberation_function)) +
@@ -675,7 +861,9 @@ p_diff_facets
 ggsave("./Output/difference_trajectory_unbiased_biased_faceted_loess_preliminary.png", p_diff_facets, dpi = 600, width = 12, height = 8)
 ```
 
-## GAM
+### GAMM Analyses
+
+#### Overall
 
 
 ```{r}
@@ -711,7 +899,7 @@ appraise(gam_model)
 # Generate New Data for Predictions
 # ----------------------------------------------------------------------------
 newdata <- expand.grid(
-  normalized_position = seq(0, 1, length.out = 100),
+  normalized_position = seq(0, 1, length.out = 10),
   deliberation_function = levels(chunks_long$deliberation_function)
 )
 
@@ -788,7 +976,7 @@ delib_functions <- c("Generation", "Justification", "Control", "Regulation")
 
 # Create newdata for predictions
 newdata <- expand.grid(
-  normalized_position = seq(0, 1, length.out = 100),
+  normalized_position = seq(0, 1, length.out = 10),
   deliberation_function = delib_functions
 )
 
@@ -915,7 +1103,7 @@ ggsave("./Output/gam_pairwise_functions_difference_trajectory.png",
        p_diff_combined, width = 14, height = 10, dpi = 600)
 ```
 
-## By response
+#### Per Accuracy
 
 ```{r}
 # ----------------------------------------------------------------------------
@@ -945,7 +1133,7 @@ appraise(gam_model)
 # Generate New Data for Predictions
 # ----------------------------------------------------------------------------
 newdata <- expand.grid(
-  normalized_position = seq(0, 1, length.out = 100),
+  normalized_position = seq(0, 1, length.out = 10),
   deliberation_function = levels(chunks_long$deliberation_function),
   response = levels(chunks_long$response)
 )
@@ -1071,7 +1259,461 @@ ggsave("./Output/gam_trajectory_per_response_and_function.png",
        p_final, dpi = 600, width = 12, height = 8)
 ```
 
-## Response and Lure Consideration
+## Interindividual Differences
+
+```{r}
+# compute mean accuracy per subject
+# select subject_id, question, response
+by_subject_accuracy <- chunks_long %>%
+  select(subject_id, question, response) %>%
+  distinct() %>%
+  group_by(subject_id) %>%
+  summarise(mean_accuracy = mean(response == "Correct", na.rm = TRUE)*100) %>%
+  ungroup()
+
+# plot the distrib
+ggplot(by_subject_accuracy, aes(x = mean_accuracy)) +
+  geom_histogram(binwidth = 5, fill = "forestgreen", color = "black", alpha = 0.7) +
+  theme_apa() +
+  labs(x = "Mean Accuracy (%)",
+       y = "Count") +
+  scale_x_continuous(breaks = seq(0, 100, by = 10)) +
+  coord_cartesian(xlim = c(0, 100))
+
+# get median
+median_accuracy <- median(by_subject_accuracy$mean_accuracy, na.rm = TRUE)
+
+# recode that in by_subject_accuracy (accuracy_high)
+by_subject_accuracy <- by_subject_accuracy %>%
+  mutate(accuracy_high = ifelse(mean_accuracy >= median_accuracy, "High", "Low")) %>%
+  mutate(accuracy_high = factor(accuracy_high, levels = c("Low", "High")))
+
+# add to chunks_long
+chunks_long <- chunks_long %>%
+  left_join(by_subject_accuracy, by = "subject_id")
+```
+
+### Overall
+
+Controlling for response.
+
+```{r}
+# ----------------------------------------------------------------------------
+# Fit GAM Model with Beta family and Random Effects
+# ----------------------------------------------------------------------------
+gam_model <- bam(
+  score ~ accuracy_high * deliberation_function + response + 
+    s(normalized_position, by = interaction(accuracy_high, deliberation_function), k = 10) +
+    s(subject_id, bs = "re") +
+    s(question, bs = "re"),
+  data = chunks_long,
+  method = "fREML"
+)
+
+summary(gam_model)
+
+# ----------------------------------------------------------------------------
+# Diagnostics
+# ----------------------------------------------------------------------------
+gam.check(gam_model)
+appraise(gam_model)
+```
+
+```{r}
+# ----------------------------------------------------------------------------
+# Generate New Data for Predictions
+# ----------------------------------------------------------------------------
+newdata <- expand.grid(
+  normalized_position = seq(0, 1, length.out = 10),
+  deliberation_function = levels(chunks_long$deliberation_function),
+  accuracy_high = levels(chunks_long$accuracy_high)
+)
+
+# Add dummy subject_id, question, and set response to a constant (to control for it)
+newdata$subject_id <- levels(chunks_long$subject_id)[1]
+newdata$question   <- levels(chunks_long$question)[1]
+newdata$response   <- levels(chunks_long$response)[1]  # e.g., always "Correct"
+
+# Predict ignoring random effects
+predictions <- predict(
+  gam_model,
+  newdata = newdata,
+  se.fit = TRUE,
+  exclude = c("s(subject_id)", "s(question)")
+)
+
+newdata$pred <- predictions$fit
+newdata$se   <- predictions$se.fit
+```
+
+```{r}
+# ----------------------------------------------------------------------------
+# Compute Pairwise Differences with z-test
+# ----------------------------------------------------------------------------
+newdata$diff <- NA
+newdata$pval <- NA
+
+for(f in unique(newdata$deliberation_function)) {
+  for(pos in unique(newdata$normalized_position)) {
+    
+    tmp <- newdata %>%
+      filter(deliberation_function == f, normalized_position == pos)
+    
+    d  <- tmp$pred[tmp$accuracy_high == "High"] - tmp$pred[tmp$accuracy_high == "Low"]
+    se <- sqrt(tmp$se[tmp$accuracy_high == "High"]^2 + tmp$se[tmp$accuracy_high == "Low"]^2)
+    
+    zval <- d / se
+    pval <- 2 * (1 - pnorm(abs(zval)))
+    
+    newdata$diff[newdata$deliberation_function == f & newdata$normalized_position == pos] <- d
+    newdata$pval[newdata$deliberation_function == f & newdata$normalized_position == pos] <- pval
+  }
+}
+```
+
+```{r}
+# ----------------------------------------------------------------------------
+# Multiple Comparisons Correction
+# ----------------------------------------------------------------------------
+newdata <- newdata %>%
+  group_by(deliberation_function) %>%
+  mutate(pval_adj = p.adjust(pval, method = "fdr"),
+         significant = pval_adj < 0.05) %>%
+  ungroup()
+
+# ----------------------------------------------------------------------------
+# Identify Significant Contiguous Regions
+# ----------------------------------------------------------------------------
+signif_regions <- newdata %>%
+  arrange(deliberation_function, normalized_position) %>%
+  group_by(deliberation_function) %>%
+  mutate(sig_grp = rleid(significant)) %>%
+  filter(significant) %>%
+  group_by(deliberation_function, sig_grp) %>%
+  summarise(xmin = min(normalized_position),
+            xmax = max(normalized_position)) %>%
+  ungroup()
+```
+
+
+```{r}
+# ----------------------------------------------------------------------------
+# Plot: Faceted Smooth Trajectories with Significance Zones
+# ----------------------------------------------------------------------------
+p_final <- ggplot() +
+  
+  # GAM Fit Lines
+  geom_line(data = newdata,
+            aes(x = normalized_position, y = pred, color = accuracy_high),
+            size = 1) +
+  
+  # GAM Confidence Ribbons
+  geom_ribbon(data = newdata,
+              aes(x = normalized_position, ymin = pred - 1.96 * se, ymax = pred + 1.96 * se, fill = accuracy_high),
+              alpha = 0.2, color = NA) +
+  
+  # Significance Highlighting
+  geom_rect(data = signif_regions,
+            aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+            fill = "grey30", alpha = 0.1) +
+  
+  facet_wrap(~deliberation_function, ncol = 2) +
+  
+  scale_color_manual(values = c("Low" = "tomato3", "High" = "forestgreen")) +
+  scale_fill_manual(values = c("Low" = "tomato3", "High" = "forestgreen")) +
+  
+  theme_apa() +
+  labs(x = "Normalized Position in Verbalization",
+       y = "Predicted Score",
+       color = "Accuracy Group",
+       fill  = "Accuracy Group")
+
+p_final
+
+# ----------------------------------------------------------------------------
+# Save Plot
+# ----------------------------------------------------------------------------
+ggsave("./Output/gam_trajectory_per_accuracy_and_function.png",
+       p_final, dpi = 600, width = 12, height = 8)
+```
+
+
+
+### Per Accuracy
+
+```{r}
+# ----------------------------------------------------------------------------
+# Fit GAM Model with Beta family and Random Effects (Including accuracy_high)
+# ----------------------------------------------------------------------------
+gam_model <- bam(
+  score ~ accuracy_high * response * deliberation_function +
+    s(normalized_position, by = interaction(accuracy_high, response, deliberation_function), k = 10) +
+    s(subject_id, bs = "re") +
+    s(question, bs = "re"),
+  data = chunks_long,
+  method = "fREML"
+)
+
+summary(gam_model)
+
+# ----------------------------------------------------------------------------
+# Diagnostics
+# ----------------------------------------------------------------------------
+gam.check(gam_model)
+appraise(gam_model)
+```
+
+```{r}
+# ----------------------------------------------------------------------------
+# Generate New Data for Predictions
+# ----------------------------------------------------------------------------
+newdata <- expand.grid(
+  normalized_position = seq(0, 1, length.out = 10),
+  deliberation_function = levels(chunks_long$deliberation_function),
+  response = levels(chunks_long$response),
+  accuracy_high = levels(chunks_long$accuracy_high)
+)
+
+# Add dummy subject_id and question for prediction
+newdata$subject_id <- levels(chunks_long$subject_id)[1]
+newdata$question   <- levels(chunks_long$question)[1]
+
+# Predict ignoring random effects
+predictions <- predict(
+  gam_model,
+  newdata = newdata,
+  se.fit = TRUE,
+  exclude = c("s(subject_id)", "s(question)")
+)
+
+newdata$pred <- predictions$fit
+newdata$se   <- predictions$se.fit
+```
+
+
+```{r}
+# ----------------------------------------------------------------------------
+# Compute Pairwise Differences with z-test per accuracy_high
+# ----------------------------------------------------------------------------
+newdata$diff <- NA
+newdata$pval <- NA
+
+for(f in unique(newdata$deliberation_function)) {
+  for(a in unique(newdata$accuracy_high)) {
+    for(pos in unique(newdata$normalized_position)) {
+      
+      tmp <- newdata %>%
+        filter(deliberation_function == f,
+               accuracy_high == a,
+               normalized_position == pos)
+      
+      d  <- tmp$pred[tmp$response == "Correct"] - tmp$pred[tmp$response == "Incorrect"]
+      se <- sqrt(tmp$se[tmp$response == "Correct"]^2 + tmp$se[tmp$response == "Incorrect"]^2)
+      
+      zval <- d / se
+      pval <- 2 * (1 - pnorm(abs(zval)))
+      
+      newdata$diff[newdata$deliberation_function == f &
+                   newdata$accuracy_high == a &
+                   newdata$normalized_position == pos] <- d
+      newdata$pval[newdata$deliberation_function == f &
+                   newdata$accuracy_high == a &
+                   newdata$normalized_position == pos] <- pval
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# FDR Correction
+# ----------------------------------------------------------------------------
+newdata <- newdata %>%
+  group_by(deliberation_function, accuracy_high) %>%
+  mutate(pval_adj = p.adjust(pval, method = "fdr"),
+         significant = pval_adj < 0.05) %>%
+  ungroup()
+
+# ----------------------------------------------------------------------------
+# Observed Means for Overlay
+# ----------------------------------------------------------------------------
+observed_means <- chunks_long %>%
+  group_by(deliberation_function, response, accuracy_high, normalized_position) %>%
+  summarise(
+    mean_score = mean(score, na.rm = TRUE),
+    se_score   = sd(score, na.rm = TRUE) / sqrt(n())
+  ) %>%
+  ungroup()
+
+# ----------------------------------------------------------------------------
+# Identify Significant Contiguous Regions
+# ----------------------------------------------------------------------------
+signif_regions <- newdata %>%
+  arrange(deliberation_function, accuracy_high, normalized_position) %>%
+  group_by(deliberation_function, accuracy_high) %>%
+  mutate(sig_grp = rleid(significant)) %>%
+  filter(significant) %>%
+  group_by(deliberation_function, accuracy_high, sig_grp) %>%
+  summarise(xmin = min(normalized_position),
+            xmax = max(normalized_position)) %>%
+  ungroup()
+
+# ----------------------------------------------------------------------------
+# Plot: Faceted Smooth Trajectories with Significance Zones
+# ----------------------------------------------------------------------------
+p_final <- ggplot() +
+  
+  # GAM Fit Lines
+  geom_line(data = newdata,
+            aes(x = normalized_position, y = pred, color = response),
+            size = 1) +
+  
+  # GAM CI
+  geom_ribbon(data = newdata,
+              aes(x = normalized_position, ymin = pred - 1.96 * se, ymax = pred + 1.96 * se, fill = response),
+              alpha = 0.2, color = NA) +
+  
+  # Significance Zones
+  geom_rect(data = signif_regions,
+            aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+            fill = "grey30", alpha = 0.1) +
+  
+  facet_grid(accuracy_high ~ deliberation_function) +
+  
+  scale_color_manual(values = c("Correct" = "forestgreen",
+                                "Incorrect" = "tomato3")) +
+  scale_fill_manual(values = c("Correct" = "forestgreen",
+                               "Incorrect" = "tomato3")) +
+  
+  theme_apa() +
+  
+  labs(x = "Normalized Position in Verbalization",
+       y = "Predicted Score",
+       color = "Response Type",
+       fill = "Response Type")
+
+p_final
+
+# ----------------------------------------------------------------------------
+# Save Plot
+# ----------------------------------------------------------------------------
+ggsave("./Output/gam_trajectory_by_accuracy_and_function.png",
+       p_final, dpi = 600, width = 14, height = 9)
+```
+
+### Direct contrast
+
+```{r}
+# ----------------------------------------------------------------------------
+# Compute Pairwise Differences: High vs Low for Each Response Level
+# ----------------------------------------------------------------------------
+newdata$diff_highlow <- NA
+newdata$pval_highlow <- NA
+
+for(f in unique(newdata$deliberation_function)) {
+  for(r in unique(newdata$response)) {
+    for(pos in unique(newdata$normalized_position)) {
+      
+      tmp <- newdata %>%
+        filter(deliberation_function == f,
+               response == r,
+               normalized_position == pos)
+      
+      d  <- tmp$pred[tmp$accuracy_high == "High"] - tmp$pred[tmp$accuracy_high == "Low"]
+      se <- sqrt(tmp$se[tmp$accuracy_high == "High"]^2 + tmp$se[tmp$accuracy_high == "Low"]^2)
+      
+      zval <- d / se
+      pval <- 2 * (1 - pnorm(abs(zval)))
+      
+      newdata$diff_highlow[newdata$deliberation_function == f &
+                           newdata$response == r &
+                           newdata$normalized_position == pos] <- d
+      newdata$pval_highlow[newdata$deliberation_function == f &
+                           newdata$response == r &
+                           newdata$normalized_position == pos] <- pval
+    }
+  }
+}
+```
+
+```{r}
+# ----------------------------------------------------------------------------
+# FDR Correction for High vs Low Differences
+# ----------------------------------------------------------------------------
+newdata <- newdata %>%
+  group_by(deliberation_function, response) %>%
+  mutate(pval_highlow_adj = p.adjust(pval_highlow, method = "fdr"),
+         significant_highlow = pval_highlow_adj < 0.05) %>%
+  ungroup()
+
+# ----------------------------------------------------------------------------
+# Identify Significant Contiguous Regions: High vs Low
+# ----------------------------------------------------------------------------
+signif_regions_highlow <- newdata %>%
+  arrange(deliberation_function, response, normalized_position) %>%
+  group_by(deliberation_function, response) %>%
+  mutate(sig_grp = rleid(significant_highlow)) %>%
+  filter(significant_highlow) %>%
+  group_by(deliberation_function, response, sig_grp) %>%
+  summarise(xmin = min(normalized_position),
+            xmax = max(normalized_position)) %>%
+  ungroup()
+```
+
+
+```{r}
+# ----------------------------------------------------------------------------
+# Plot: Accuracy Group Differences per Function and Response
+# ----------------------------------------------------------------------------
+p_diff <- ggplot() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray40") +
+  
+  # Difference Line
+  geom_line(data = newdata %>% distinct(deliberation_function, response, accuracy_high, normalized_position, .keep_all = TRUE),
+            aes(x = normalized_position, y = diff_highlow),
+            color = "black", linewidth = 1) +
+  
+  # Confidence Ribbon (optional, if estimating CI)
+  # geom_ribbon(aes(ymin = diff_highlow - 1.96 * se_combined,
+  #                 ymax = diff_highlow + 1.96 * se_combined),
+  #             alpha = 0.15, fill = "black") +
+  
+  # Significance Regions
+  geom_rect(data = signif_regions_highlow,
+            aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+            fill = "steelblue", alpha = 0.2) +
+  
+  facet_grid(response ~ deliberation_function) +
+  theme_apa() +
+  labs(
+    x = "Normalized Position in Verbalization",
+    y = "Difference (High - Low Accuracy)",
+    title = "Accuracy Group Differences per Response & Deliberation Function"
+  )
+
+p_diff
+
+# ----------------------------------------------------------------------------
+# Save Plot
+# ----------------------------------------------------------------------------
+ggsave("./Output/gam_contrast_high_vs_low_accuracy.png",
+       p_diff, dpi = 600, width = 14, height = 9)
+```
+
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+## Complementary Analyses
+
+### Trajectories per Accuracy and Lure Consideration
 
 ```{r}
 # ----------------------------------------------------------------------------
@@ -1110,7 +1752,7 @@ appraise(gam_model)
 # Generate Prediction Data
 # ----------------------------------------------------------------------------
 newdata <- expand.grid(
-  normalized_position = seq(0, 1, length.out = 100),
+  normalized_position = seq(0, 1, length.out = 10),
   deliberation_function = levels(chunks_long_lure$deliberation_function),
   response = levels(chunks_long_lure$response),
   lure_consideration = levels(chunks_long_lure$lure_consideration)
@@ -1228,7 +1870,7 @@ ggsave("./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png",
 
 ```
 
-## Familiarity
+### Trajectories per Familiarity
 
 ```{r}
 # ----------------------------------------------------------------------------
@@ -1263,7 +1905,7 @@ appraise(gam_model_fam)
 # Generate Prediction Data
 # ----------------------------------------------------------------------------
 newdata_fam <- expand.grid(
-  normalized_position = seq(0, 1, length.out = 100),
+  normalized_position = seq(0, 1, length.out = 10),
   deliberation_function = levels(chunks_long_fam$deliberation_function),
   familiar = levels(chunks_long_fam$familiar)
 )

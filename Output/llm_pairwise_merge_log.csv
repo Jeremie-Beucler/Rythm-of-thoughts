@@ -1,0 +1,527 @@
+pair,sim,llm
+inference|assumption,0.86392033,"Inference: inference
+Assumption: assumption"
+inference|evaluation,0.7299223,"Inference: inference
+Evaluation: evaluation"
+inference|justification,0.7365753,"Inference: inference, justification"
+inference|analysis,0.80242664,"Inference: inference
+Analysis: analysis"
+inference|correction,0.7434994,"Inference: inference
+Correction: correction"
+inference|hypothesis,0.83856404,"Inference: inference, hypothesis"
+inference|selection,0.7340758,"Inference: inference
+Selection: selection"
+inference|assuming,0.8342951,"Inference: inference, assuming"
+inference|hypothesizing,0.7833508,"Inference: inference, hypothesizing"
+inference|inferring,0.8840547,"Inference: [inference, inferring]"
+inference|comparison,0.7289434,"Inference: inference
+Comparison: comparison"
+inference|error detection,0.7358202,"Inference: inference
+ErrorDetection: error detection"
+inference|elaboration,0.743196,"Inference: inference
+Elaboration: elaboration"
+inference|analogizing,0.7518798,"Inference: inference
+Analogizing: analogizing"
+inference|monitoring,0.7424006,"Inference: inference
+Monitoring: monitoring"
+inference|analogy,0.8108648,"Inference: inference
+Analogy: analogy"
+inference|generalization,0.74396384,"InductiveInference: inference, generalization"
+inference|uncertainty,0.77937126,"Inference: inference
+Uncertainty: uncertainty"
+inference|sequencing,0.7409534,"Inference: inference
+Sequencing: sequencing"
+inference|pattern recognition,0.7359649,"Inference: inference
+PatternRecognition: pattern recognition"
+inference|confirmation,0.7434691,"Inference: inference, confirmation"
+inference|hypothesis generation,0.8379354,"Inference: inference
+HypothesisGeneration: hypothesis generation"
+inference|analyzing,0.812315,"Inference: inference
+Analyzing: analyzing"
+inference|knowledge retrieval,0.73117745,"Inference: inference
+KnowledgeRetrieval: knowledge retrieval"
+inference|analogical reasoning,0.82294863,"Inference: inference
+AnalogicalReasoning: analogical reasoning"
+inference|evaluating,0.7547922,"Inference: inference, evaluating"
+reevaluation|evaluation,0.7791281,"Evaluation: evaluation, reevaluation"
+reevaluation|repetition,0.7332687,"Repetition: repetition
+Reevaluation: reevaluation"
+reevaluation|justification,0.73224914,"Reevaluation: reevaluation
+Justification: justification"
+reevaluation|selection,0.7269254,"Reevaluation: reevaluation
+Selection: selection"
+reevaluation|recall,0.74102974,"MemoryRecall: recall
+Reevaluation: reevaluation"
+reevaluation|revision,0.8025784,"Revision: reevaluation, revision"
+reevaluation|reframing,0.7390653,"Reframing: reevaluation, reframing"
+reevaluation|reiteration,0.75869995,"Repetition: reiteration, reevaluation"
+reevaluation|rationalizing,0.74502087,"Reevaluation: reevaluation
+Rationalizing: rationalizing"
+reevaluation|rationalization,0.7440481,"Reevaluation: reevaluation
+Rationalization: rationalization"
+reevaluation|prioritization,0.778234,"Reevaluation: reevaluation
+Prioritization: prioritization"
+reevaluation|analyzing,0.7380875,"Analysis: [reevaluation, analyzing]"
+reevaluation|consideration,0.81302536,"Reevaluation: reevaluation, consideration"
+reevaluation|rephrasing,0.7327666,"Reinterpretation: reevaluation, rephrasing"
+reevaluation|evaluating,0.78460306,"Evaluation: [reevaluation, evaluating]"
+assumption|reflection,0.7340949,"Assumption: assumption
+Reflection: reflection"
+assumption|analysis,0.7571713,"Analysis: analysis
+Assumption: assumption"
+assumption|correction,0.7818041,"ErrorCorrection: correction
+Assumption: assumption"
+assumption|hypothesis,0.817945,"FunctionLabel: [assumption, hypothesis]"
+assumption|elimination,0.72981906,"Elimination: [elimination]
+Assumption: [assumption]"
+assumption|assuming,0.9206793,"Assumption: [assumption, assuming]"
+assumption|hypothesizing,0.78186977,"Hypothesizing: assumption, hypothesizing"
+assumption|inferring,0.79806757,"Inference: assumption, inferring"
+assumption|clarification,0.7300075,"Assumption: assumption
+Clarification: clarification"
+assumption|monitoring,0.7322844,"Assumption: assumption
+Monitoring: monitoring"
+assumption|analogy,0.7482993,"Analogy: analogy
+Assumption: assumption"
+assumption|reiteration,0.73240805,"Assumption: assumption
+Reiteration: reiteration"
+assumption|uncertainty,0.8078281,"ProbabilityAssessment: assumption, uncertainty"
+assumption|confirmation,0.7611579,"HypothesisFormation: assumption, confirmation"
+assumption|hypothesis generation,0.77159774,"Hypothesis: assumption, hypothesis generation"
+assumption|analyzing,0.755,"Analyzing: analyzing
+Assumption: assumption"
+assumption|consideration,0.727073,"Assumption: assumption
+Consideration: consideration"
+assumption|confusion,0.7427911,"Assumption: assumption
+Confusion: confusion"
+assumption|analogical reasoning,0.7437036,"Assumption: assumption
+AnalogicalReasoning: analogical reasoning"
+assumption|integration,0.73720974,"Assumption: assumption
+Integration: integration"
+evaluation|reflection,0.7346854,"Evaluation: evaluation, reflection"
+evaluation|justification,0.7558325,"Evaluation: evaluation, justification"
+evaluation|analysis,0.78494805,"Analysis: [evaluation, analysis]"
+evaluation|selection,0.7623589,"Evaluation: evaluation, selection"
+evaluation|elimination,0.7284471,"Evaluation: evaluation, elimination"
+evaluation|comparison,0.7708086,"Comparison: evaluation, comparison"
+evaluation|elaboration,0.7463167,"Elaboration: [elaboration]
+Evaluation: [evaluation]"
+evaluation|revision,0.74379903,"Assessment: evaluation, revision"
+evaluation|monitoring,0.7615509,"Assessment: evaluation, monitoring"
+evaluation|analogy,0.7299634,"Evaluation: evaluation
+Analogy: analogy"
+evaluation|conditioning,0.7408091,"Conditioning: conditioning
+Evaluation: evaluation"
+evaluation|confirmation,0.7288104,"Evaluation: evaluation, confirmation"
+evaluation|analyzing,0.80103683,"Analysis: [evaluation, analyzing]"
+evaluation|consideration,0.83850604,"Evaluation: evaluation, consideration"
+evaluation|evaluating,0.97568744,"Evaluation: [evaluation, evaluating]"
+pattern matching|repetition,0.7298275,"PatternMatching: pattern matching
+Repetition: repetition"
+pattern matching|reflection,0.7344163,"PatternMatching: pattern matching
+Reflection: reflection"
+pattern matching|selection,0.73108506,"PatternMatching: pattern matching
+Selection: selection"
+pattern matching|inferring,0.73218393,"PatternMatching: pattern matching, inferring"
+pattern matching|comparison,0.7485289,"PatternMatching: pattern matching, comparison"
+pattern matching|error detection,0.7293479,"AnomalyDetection: error detection, pattern matching"
+pattern matching|analogy,0.74003446,"PatternMatching: pattern matching, analogy"
+pattern matching|associating,0.73437226,"PatternMatching: pattern matching, associating"
+pattern matching|sequencing,0.77782,"PatternMatching: pattern matching
+Sequencing: sequencing"
+pattern matching|pattern recognition,0.90010154,"PatternMatching: [pattern matching, pattern recognition]"
+pattern matching|pattern completion,0.8696319,"PatternMatching: [pattern matching, pattern completion]"
+repetition|reflection,0.7665507,"Repetition: repetition
+Reflection: reflection"
+repetition|recognition,0.7316404,"MemoryRetrieval: repetition, recognition"
+repetition|recall,0.7722191,"MemoryRetrieval: repetition, recall"
+repetition|revision,0.77274287,"Repetition: repetition
+Revision: revision"
+repetition|reframing,0.7334345,"Repetition: repetition
+Reframing: reframing"
+repetition|conditioning,0.7428242,"Learning: repetition, conditioning"
+repetition|reiteration,0.79213697,"Repetition: repetition, reiteration"
+repetition|sequencing,0.76242393,"Sequencing: sequencing, repetition"
+repetition|confirmation,0.7481984,"Repetition: repetition
+Confirmation: confirmation"
+repetition|pattern completion,0.72819865,"PatternCompletion: repetition, pattern completion"
+repetition|rephrasing,0.7655008,"Reexpression: repetition, rephrasing"
+repetition|rehearsal,0.7309525,"Repetition: repetition, rehearsal"
+reflection|justification,0.7270831,"Reflection: reflection, justification"
+reflection|analysis,0.7305127,"Analysis: analysis, reflection"
+reflection|correction,0.73210734,"ErrorCorrection: correction
+Reflection: reflection"
+reflection|elimination,0.7319343,"Reflection: reflection
+Elimination: elimination"
+reflection|inferring,0.7344656,"Inferencing: inferring
+Reflection: reflection"
+reflection|comparison,0.73799074,"Comparison: comparison
+Reflection: reflection"
+reflection|recognition,0.754877,"Recognition: recognition
+Reflection: reflection"
+reflection|recall,0.73303175,"MemoryRecall: recall
+Reflection: reflection"
+reflection|revision,0.7600674,"Reflection: reflection, revision"
+reflection|reframing,0.7605826,"Reframing: reframing, reflection"
+reflection|monitoring,0.7268995,"Reflection: reflection, monitoring"
+reflection|hesitation,0.7501565,"Reflection: reflection, hesitation"
+reflection|pattern recognition,0.7315855,"PatternRecognition: pattern recognition
+Reflection: reflection"
+reflection|confirmation,0.75017434,"Reflection: reflection, confirmation"
+reflection|analyzing,0.7393867,"Analyzing: analyzing, reflection"
+reflection|consideration,0.7606994,"Reflection: reflection, consideration"
+reflection|evaluating,0.7429902,"Evaluation: [evaluating, reflection]"
+justification|questioning,0.73092574,"Justification: justification
+Questioning: questioning"
+justification|clarification,0.74050987,"Explanation: justification, clarification 
+Elaboration: justification, clarification"
+justification|revision,0.72879297,"Justification: justification
+Revision: revision"
+justification|analogy,0.73625004,"Justification: justification
+Analogy: analogy"
+justification|reiteration,0.73787886,"Justification: justification
+Reiteration: reiteration"
+justification|justifying,0.9426035,"Justification: justification, justifying"
+justification|confirmation,0.75882816,"Validation: justification, confirmation"
+justification|rationalizing,0.81617874,"Rationalization: justification, rationalizing"
+justification|rationalization,0.80828816,"Rationalization: justification, rationalization"
+justification|analyzing,0.7317746,"Analyzing: analyzing
+Justification: justification"
+justification|consideration,0.7895192,"Evaluation: justification, consideration"
+justification|confusion,0.73894316,"Justification: justification
+Confusion: confusion"
+justification|analogical reasoning,0.75709945,"Justification: justification
+AnalogicalReasoning: analogical reasoning"
+justification|evaluating,0.7589073,"Evaluation: justification, evaluating"
+analysis|hypothesis,0.75705624,"Analysis: analysis, hypothesis"
+analysis|selection,0.7378969,"Analysis: analysis, selection"
+analysis|elimination,0.72858214,"Analysis: analysis, elimination"
+analysis|assuming,0.73424923,"Analysis: analysis
+Assuming: assuming"
+analysis|inferring,0.7667566,"Analysis: analysis, inferring"
+analysis|comparison,0.76177055,"Analysis: analysis, comparison"
+analysis|elaboration,0.7285062,"Analysis: analysis, elaboration"
+analysis|analogizing,0.74168354,"Analysis: analysis, analogizing"
+analysis|monitoring,0.769291,"Analysis: analysis, monitoring"
+analysis|analogy,0.7797718,"Analysis: analysis
+Analogy: analogy"
+analysis|rationalizing,0.7330197,"Analysis: analysis, rationalizing"
+analysis|rationalization,0.7302601,"Analysis: analysis
+Rationalization: rationalization"
+analysis|hypothesis generation,0.73597723,"Analysis: analysis
+HypothesisGeneration: hypothesis generation"
+analysis|analyzing,0.9596011,"Analysis: [analysis, analyzing]"
+analysis|consideration,0.768284,"Evaluation: analysis, consideration"
+analysis|analogical reasoning,0.73808646,"Analysis: analysis
+AnalogicalReasoning: analogical reasoning"
+analysis|evaluating,0.80159134,"Evaluation: [analysis, evaluating]"
+correction|assuming,0.73939776,"Correction: correction
+Assuming: assuming"
+correction|comparison,0.7326276,"Correction: correction
+Comparison: comparison"
+correction|recognition,0.73798555,"ErrorCorrection: correction
+PatternRecognition: recognition"
+correction|clarification,0.7673556,"Clarification: correction, clarification"
+correction|recall,0.7414599,"MemoryRecall: recall
+ErrorCorrection: correction"
+correction|revision,0.7948756,"Revision: correction, revision"
+correction|analogizing,0.73289865,"Correction: correction
+Analogizing: analogizing"
+correction|analogy,0.73735625,"Correction: correction
+Analogy: analogy"
+correction|reiteration,0.76412433,"Repetition: reiteration
+Correction: correction"
+correction|confirmation,0.7633123,"Validation: correction, confirmation"
+correction|confusion,0.7525589,"Correction: correction
+Confusion: confusion"
+correction|rephrasing,0.8030513,"Revision: correction, rephrasing"
+hypothesis|assuming,0.84641457,"Hypothesis: hypothesis, assuming"
+hypothesis|hypothesizing,0.87424505,"Hypothesis: [hypothesis, hypothesizing]"
+hypothesis|inferring,0.8063439,"Inference: hypothesis, inferring"
+hypothesis|monitoring,0.7276876,"Hypothesis: hypothesis
+Monitoring: monitoring"
+hypothesis|analogy,0.77339697,"AbductiveInference: hypothesis
+Analogy: analogy"
+hypothesis|uncertainty,0.7430568,"ProbabilityAssessment: hypothesis, uncertainty"
+hypothesis|confirmation,0.7300159,"HypothesisTesting: hypothesis, confirmation"
+hypothesis|rationalizing,0.73567605,"Hypothesis: hypothesis
+Rationalizing: rationalizing"
+hypothesis|rationalization,0.7367275,"Hypothesis: hypothesis
+Rationalization: rationalization"
+hypothesis|hypothesis generation,0.8904651,"Hypothesis: [hypothesis, hypothesis generation]"
+hypothesis|analyzing,0.7431043,"Hypothesis: hypothesis
+Analyzing: analyzing"
+hypothesis|analogical reasoning,0.7511855,"Hypothesis: hypothesis
+AnalogicalReasoning: analogical reasoning"
+selection|elimination,0.8037261,"Selection: selection, elimination"
+selection|association,0.7345406,"Association: association, selection"
+selection|comparison,0.7321727,"Comparison: comparison, selection"
+selection|recall,0.7428059,"MemoryRecall: recall
+Selection: selection"
+selection|hesitation,0.7348179,"Selection: selection, hesitation"
+selection|sequencing,0.75796056,"Selection: selection
+Sequencing: sequencing"
+selection|prioritization,0.78858584,"Selection: selection, prioritization"
+selection|analyzing,0.7318398,"Analyzing: analyzing
+Selection: selection"
+selection|consideration,0.80290604,"Evaluation: selection, consideration"
+selection|evaluating,0.7601369,"Evaluation: evaluating, selection"
+selection|integration,0.7420692,"Selection: selection
+Integration: integration"
+elimination|confirmation,0.73593736,"Elimination: elimination
+Confirmation: confirmation"
+elimination|analyzing,0.72742295,"Analyzing: analyzing
+Elimination: elimination"
+elimination|consideration,0.73025405,"Elimination: elimination
+Consideration: consideration"
+elimination|evaluating,0.7333372,"Evaluation: [elimination, evaluating]"
+elimination|integration,0.73905516,"Elimination: elimination
+Integration: integration"
+association|analogy,0.73968375,"Association: association, analogy"
+association|associating,0.88602483,"Association: association, associating"
+association|integration,0.7797558,"Association: association, integration"
+assuming|hypothesizing,0.8069859,"Hypothesizing: assuming, hypothesizing"
+assuming|inferring,0.78703034,"Inference: assuming, inferring"
+assuming|clarification,0.72769886,"Assuming: assuming
+Clarification: clarification"
+assuming|analogy,0.7615027,"Assuming: assuming
+Analogy: analogy"
+assuming|uncertainty,0.8192655,"ProbabilityAssessment: assuming, uncertainty"
+assuming|confirmation,0.7487033,"HypothesisFormation: assuming, confirmation"
+assuming|hypothesis generation,0.7613956,"Hypothesis: [assuming, hypothesis generation]"
+assuming|analyzing,0.73739433,"Analyzing: analyzing
+Assuming: assuming"
+assuming|consideration,0.7351352,"Hypothesis: assuming, consideration"
+assuming|analogical reasoning,0.74511653,"Analogical Reasoning: analogical reasoning
+Assuming: assuming"
+assuming|evaluating,0.73628265,"Assessing: assuming, evaluating"
+hypothesizing|inferring,0.80218625,"Inference: hypothesizing, inferring"
+hypothesizing|uncertainty,0.7548203,"Hypothesizing: hypothesizing
+Uncertainty: uncertainty"
+hypothesizing|hypothesis generation,0.7958049,"Hypothesizing: [hypothesizing, hypothesis generation]"
+inferring|elaboration,0.7374543,"Inferencing: inferring
+Elaboration: elaboration"
+inferring|analogizing,0.7276325,"Inferencing: inferring, analogizing"
+inferring|monitoring,0.72783446,"Inferencing: inferring
+Monitoring: monitoring"
+inferring|analogy,0.7613046,"Inference: inferring
+Analogy: analogy"
+inferring|uncertainty,0.75026464,"Inference: inferring
+Uncertainty: uncertainty"
+inferring|pattern recognition,0.74589735,"PatternRecognition: inferring, pattern recognition"
+inferring|hypothesis generation,0.8043939,"Inference: inferring, hypothesis generation"
+inferring|analyzing,0.79379463,"Analyzing: analyzing
+Inferring: inferring"
+inferring|knowledge retrieval,0.73583907,"Inference: inferring, knowledge retrieval"
+inferring|analogical reasoning,0.777446,"Inferencing: inferring, analogical reasoning"
+inferring|evaluating,0.74063146,"Inferring: inferring
+Evaluating: evaluating"
+questioning|clarification,0.76339984,"Clarification: questioning, clarification"
+questioning|hesitation,0.80081314,"Doubting: questioning, hesitation"
+questioning|uncertainty,0.78023577,"Doubting: questioning, uncertainty"
+questioning|confirmation,0.7512536,"Evaluation: questioning, confirmation"
+questioning|analyzing,0.74376917,"Analyzing: analyzing, questioning"
+questioning|consideration,0.75830203,"Evaluation: questioning, consideration"
+questioning|confusion,0.81694424,"Uncertainty: questioning, confusion"
+questioning|evaluating,0.7642272,"Assessment: questioning, evaluating"
+comparison|analogizing,0.8040818,"Comparison: comparison, analogizing"
+comparison|analogy,0.85401344,"Comparison: comparison, analogy"
+comparison|analyzing,0.7554036,"Analysis: [comparison, analyzing]"
+comparison|consideration,0.7365859,"Comparison: comparison, consideration"
+comparison|analogical reasoning,0.7514718,"Comparison: comparison
+AnalogicalReasoning: analogical reasoning"
+comparison|evaluating,0.7831366,"Evaluation: comparison, evaluating"
+recognition|recall,0.78746283,"MemoryRetrieval: recognition, recall"
+recognition|analogizing,0.73699766,"PatternRecognition: recognition
+Analogizing: analogizing"
+recognition|reframing,0.7488768,"Reframing: reframing
+Recognition: recognition"
+recognition|monitoring,0.7386001,"Recognition: recognition, monitoring"
+recognition|associating,0.7527049,"PatternRecognition: recognition, associating"
+recognition|pattern recognition,0.8236809,"PatternRecognition: recognition, pattern recognition"
+recognition|confirmation,0.76417875,"Verification: recognition, confirmation"
+recognition|consideration,0.74951655,"Recognition: recognition
+Consideration: consideration"
+error detection|monitoring,0.7725594,"ErrorDetection: error detection, monitoring"
+error detection|pattern recognition,0.779144,"PatternRecognition: error detection, pattern recognition"
+error detection|evaluating,0.7269193,"ErrorDetection: error detection, evaluating"
+clarification|elaboration,0.743629,"Detailing: clarification, elaboration"
+clarification|confirmation,0.74568075,"Verification: clarification, confirmation"
+clarification|confusion,0.8105315,"Clarification: clarification
+Confusion: confusion"
+elaboration|revision,0.7704265,"Elaboration: elaboration, revision"
+elaboration|reframing,0.7280887,"Elaboration: elaboration, reframing"
+elaboration|analyzing,0.7351411,"Analyzing: analyzing
+Elaboration: elaboration"
+elaboration|consideration,0.7338934,"Elaboration: elaboration, consideration"
+elaboration|rephrasing,0.746041,"Rephrasing: elaboration, rephrasing"
+elaboration|evaluating,0.7353366,"Elaboration: elaboration
+Evaluating: evaluating"
+abstraction|analogizing,0.733407,"Abstraction: abstraction
+Analogizing: analogizing"
+abstraction|analogy,0.73677886,"Abstraction: abstraction
+Analogy: analogy"
+abstraction|generalization,0.76182127,"Abstraction: abstraction, generalization"
+abstraction|sequencing,0.75605553,"Abstraction: abstraction
+Sequencing: sequencing"
+abstraction|rationalizing,0.7426966,"Abstraction: abstraction
+Rationalizing: rationalizing"
+abstraction|rationalization,0.7450886,"Abstraction: abstraction
+Rationalization: rationalization"
+abstraction|analogical reasoning,0.7329075,"Abstraction: abstraction
+AnalogicalReasoning: analogical reasoning"
+abstraction|integration,0.76257586,"Abstraction: abstraction, integration"
+recall|revision,0.7627763,"MemoryUpdate: recall, revision"
+recall|reframing,0.74472433,"Recall: recall
+Reframing: reframing"
+recall|monitoring,0.76233816,"Recall: recall
+Monitoring: monitoring"
+recall|conditioning,0.72858435,"Recall: recall
+Conditioning: conditioning"
+recall|reiteration,0.74392253,"Repetition: recall, reiteration"
+recall|confirmation,0.7453971,"Recall: recall
+Confirmation: confirmation"
+recall|consideration,0.73085636,"Recall: recall
+Consideration: consideration"
+recall|rephrasing,0.73649746,"Recall: recall
+Rephrasing: rephrasing"
+revision|reframing,0.7568208,"Reframing: revision, reframing"
+revision|reiteration,0.7442422,"Repetition: revision, reiteration"
+revision|confirmation,0.793882,"Validation: revision, confirmation"
+revision|consideration,0.76060545,"Revision: revision, consideration"
+revision|rephrasing,0.75628066,"Reformulation: revision, rephrasing"
+revision|rehearsal,0.75864404,"MemoryRehearsal: [revision, rehearsal]"
+revision|evaluating,0.7375473,"Evaluation: evaluating, revision"
+revision|integration,0.727715,"Revision: revision, integration"
+analogizing|analogy,0.91266143,"Analogizing: [analogizing, analogy]"
+analogizing|generalization,0.76794016,"Abstraction: analogizing, generalization"
+analogizing|justifying,0.72813517,"Analogizing: analogizing
+Justifying: justifying"
+analogizing|rationalizing,0.7452445,"Analogizing: analogizing
+Rationalizing: rationalizing"
+analogizing|rationalization,0.745903,"Analogizing: analogizing
+Rationalization: rationalization"
+analogizing|analyzing,0.7516484,"Comparing: [analogizing, analyzing]"
+analogizing|analogical reasoning,0.89965403,"Analogizing: [analogizing, analogical reasoning]"
+analogizing|rephrasing,0.73888797,"Analogizing: analogizing
+Rephrasing: rephrasing"
+reframing|reiteration,0.7656197,"Reframing: reframing
+Reiteration: reiteration"
+reframing|rationalizing,0.735847,"Reframing: reframing
+Rationalizing: rationalizing"
+reframing|rephrasing,0.77586347,"Reframing: reframing, rephrasing"
+monitoring|pattern recognition,0.7357423,"PatternRecognition: pattern recognition
+Monitoring: monitoring"
+monitoring|analyzing,0.7938259,"Analyzing: analyzing, monitoring"
+monitoring|evaluating,0.7834705,"Assessment: monitoring, evaluating"
+analogy|generalization,0.72939724,"Abstraction: analogy, generalization"
+analogy|associating,0.7366982,"Analogizing: analogy, associating"
+analogy|justifying,0.75514984,"Analogy: analogy
+Justifying: justifying"
+analogy|rationalizing,0.73890877,"Analogy: analogy
+Rationalizing: rationalizing"
+analogy|rationalization,0.7455324,"Analogy: analogy
+Rationalization: rationalization"
+analogy|hypothesis generation,0.7409165,"Analogy: analogy
+HypothesisGeneration: hypothesis generation"
+analogy|analyzing,0.7858329,"Analyzing: [analogy, analyzing]"
+analogy|analogical reasoning,0.88418436,"AnalogicalReasoning: [analogy, analogical reasoning]"
+analogy|rephrasing,0.7308272,"Analogy: analogy
+Rephrasing: rephrasing"
+analogy|evaluating,0.74288213,"Analogy: analogy
+Evaluating: evaluating"
+hesitation|uncertainty,0.8182471,"Doubt: hesitation, uncertainty"
+hesitation|confirmation,0.750769,"Confirmation: confirmation
+Hesitation: hesitation"
+hesitation|consideration,0.779346,"Deliberation: hesitation, consideration"
+hesitation|confusion,0.7742322,"Uncertainty: hesitation, confusion"
+hesitation|evaluating,0.74218273,"Evaluating: evaluating, hesitation"
+conditioning|rationalizing,0.7375921,"Conditioning: conditioning
+Rationalizing: rationalizing"
+conditioning|rationalization,0.7352524,"Conditioning: conditioning
+Rationalization: rationalization"
+conditioning|evaluating,0.7461516,"Conditioning: conditioning
+Evaluating: evaluating"
+reiteration|justifying,0.7369563,"Reiteration: reiteration
+Justification: justifying"
+reiteration|confirmation,0.75991464,"Confirmation: reiteration, confirmation"
+reiteration|rationalization,0.73416245,"Reiteration: reiteration
+Rationalization: rationalization"
+reiteration|rephrasing,0.7981604,"Reexpression: reiteration, rephrasing"
+generalization|sequencing,0.74064004,"Generalization: generalization
+Sequencing: sequencing"
+generalization|rationalizing,0.7682891,"Generalization: generalization
+Rationalizing: rationalizing"
+generalization|rationalization,0.7894966,"Generalization: generalization
+Rationalization: rationalization"
+generalization|hypothesis generation,0.7676984,"Abstraction: generalization, hypothesis generation"
+generalization|analogical reasoning,0.73973364,"AnalogicalReasoning: analogical reasoning
+Generalization: generalization"
+generalization|integration,0.7319621,"FunctionLabel: [generalization, integration]"
+uncertainty|confirmation,0.73686117,"ProbabilityAssessment: uncertainty, confirmation"
+uncertainty|consideration,0.7630645,"Uncertainty: uncertainty
+Consideration: consideration"
+uncertainty|confusion,0.78449607,"Ambiguity: uncertainty, confusion"
+uncertainty|evaluating,0.75925756,"Uncertainty: uncertainty
+Evaluating: evaluating"
+associating|integration,0.8081761,"FunctionLabel: [associating, integration]"
+justifying|rationalizing,0.8204528,"Rationalizing: [justifying, rationalizing]"
+justifying|rationalization,0.79835963,"Rationalization: [justifying, rationalization]"
+justifying|consideration,0.7371168,"Justification: justifying, consideration"
+justifying|analogical reasoning,0.76881945,"Justification: justifying
+AnalogicalReasoning: analogical reasoning"
+justifying|evaluating,0.7367188,"Evaluating: [justifying, evaluating]"
+sequencing|pattern recognition,0.7526208,"Sequencing: sequencing
+PatternRecognition: pattern recognition"
+sequencing|prioritization,0.7485231,"Sequencing: sequencing
+Prioritization: prioritization"
+sequencing|hypothesis generation,0.73257977,"Sequencing: sequencing
+HypothesisGeneration: hypothesis generation"
+sequencing|pattern completion,0.77437174,"Sequencing: sequencing
+PatternCompletion: pattern completion"
+sequencing|analyzing,0.7404176,"Sequencing: sequencing
+Analyzing: analyzing"
+sequencing|rephrasing,0.7282361,"Sequencing: sequencing
+Rephrasing: rephrasing"
+sequencing|integration,0.7292556,"Sequencing: sequencing
+Integration: integration"
+pattern recognition|pattern completion,0.8282733,"PatternRecognition: pattern recognition, pattern completion"
+pattern recognition|analyzing,0.7284533,"PatternRecognition: pattern recognition, analyzing"
+confirmation|consideration,0.7532441,"Evaluation: confirmation, consideration"
+confirmation|confusion,0.7404822,"Confirmation: confirmation
+Confusion: confusion"
+confirmation|evaluating,0.7517776,"Evaluation: confirmation, evaluating"
+rationalizing|rationalization,0.9862348,"Rationalization: [rationalizing, rationalization]"
+rationalizing|prioritization,0.74054945,"Prioritization: prioritization
+Rationalizing: rationalizing"
+rationalizing|hypothesis generation,0.75201213,"Rationalizing: rationalizing
+HypothesisGeneration: hypothesis generation"
+rationalizing|analyzing,0.7592763,"Analyzing: [analyzing, rationalizing]"
+rationalizing|consideration,0.76244086,"Rationalization: rationalizing
+Consideration: consideration"
+rationalizing|analogical reasoning,0.76602304,"AnalogicalReasoning: analogical reasoning
+Rationalizing: rationalizing"
+rationalizing|evaluating,0.7268486,"Evaluating: [rationalizing, evaluating]"
+rationalization|prioritization,0.7462716,"Rationalization: rationalization
+Prioritization: prioritization"
+rationalization|hypothesis generation,0.7591497,"Rationalization: rationalization
+HypothesisGeneration: hypothesis generation"
+rationalization|analyzing,0.74692774,"Analyzing: analyzing
+Rationalization: rationalization"
+rationalization|consideration,0.7491932,"Rationalization: rationalization
+Consideration: consideration"
+rationalization|analogical reasoning,0.76807725,"Rationalization: rationalization
+AnalogicalReasoning: analogical reasoning"
+prioritization|consideration,0.7931266,"Evaluation: prioritization, consideration"
+hypothesis generation|analyzing,0.7411661,"HypothesisGeneration: hypothesis generation
+Analyzing: analyzing"
+hypothesis generation|analogical reasoning,0.7548682,"HypothesisGeneration: hypothesis generation
+AnalogicalReasoning: analogical reasoning"
+analyzing|consideration,0.78534865,"Analysis: analyzing, consideration"
+analyzing|analogical reasoning,0.7524042,"Analyzing: analyzing
+AnalogicalReasoning: analogical reasoning"
+analyzing|evaluating,0.83657,"Assessing: [analyzing, evaluating]"
+consideration|evaluating,0.84958076,"Evaluation: consideration, evaluating"
+consideration|integration,0.743317,"Integration: integration, consideration"
+evaluating|integration,0.7368352,"Evaluating: evaluating
+Integration: integration"
