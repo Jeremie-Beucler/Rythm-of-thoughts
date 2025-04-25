@@ -1,13 +1,21 @@
 "Function","Chunk","Question","Correct_answer","Lured_answer","Control","Generation","Justification","Regulation"
-"Control","No, no, no, no, no.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
-"Control","I shouldn't trust my first my first thought.","How many of each animal did Moses put on the ark?","None","Two",90,0,0,10
-"Control","Wait, you don't bury the survivors.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",90,10,0,10
-"Generation","In a one-story pink house, there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower. Everything was pink.","In a one-storey pink house with everything pink, what colour were the stairs probably?","No stairs","Pink",0,80,0,0
-"Generation","Which sentence is correct? A. The yolk and the egg are wise or B. The yolk of the egg is wise.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,80,0,0
-"Generation","It's a stormy night and a plane takes off from JFK Airport in New York. The storm worsens and the plane crashes. Half lands in the United States, the other half lands in Canada.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,80,0,0
-"Justification","It's B. the yolk of the egg is white because that's what English determines it is.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,80,0
-"Justification","No, I don't think it would be ethical, especially if they had kids.","Would it be ethical for a man to marry the sister of his widow?","Not possible","Yes / No",0,0,80,0
-"Justification","Okay, so technically, B is grammatically correct because it is white.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,80,0
-"Regulation","How many of each animal did Moses put on the ark? Halfway done, don't forget to keep reading and thinking, alright, halfway done.","How many of each animal did Moses put on the ark?","None","Two",0,0,0,80
-"Regulation","I wonder if I get any points for missing a question.","The wind blows west. An electric train runs east. In which direction does the smoke blow?","No smoke","West",0,0,0,80
-"Regulation","What does it mean by cardinal direction? I have no idea.","The wind blows west. An electric train runs east. In which direction does the smoke blow?","No smoke","West",0,0,0,80
+"Control","Shush.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
+"Control","No, no.","If you have only one match and you walk into a dark room with an oil lamp, a newspaper and wood—which thing would you light first?","Match","Oil lamp / Newspaper / Wood",100,0,0,0
+"Control","No, no, no, no.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
+"Control","No, no.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
+"Control","No, no.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
+"Generation","Half lands in the United States, the other half lands in Canada.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,84,0,0
+"Generation","Whichever country they were born in last year","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,80,0,0
+"Generation","The plane crashes half lands in the United States and the other half in Canada.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,80,0,0
+"Generation","Halflands in the United States, the other halflands in Canada.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,80,0,0
+"Generation","In a one story pink house there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower, everything was pink.","In a one-storey pink house with everything pink, what colour were the stairs probably?","No stairs","Pink",0,80,0,0
+"Justification","It's not factually correct because the yolk of an egg is yellow.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,100,0
+"Justification","Because egg yolks are yellow.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,100,0
+"Justification","Because the yolk is yellow.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,96,0
+"Justification","So there is no smoke as it is an electric train.","The wind blows west. An electric train runs east. In which direction does the smoke blow?","No smoke","West",0,4,96,0
+"Justification","Because the train is electric.","The wind blows west. An electric train runs east. In which direction does the smoke blow?","No smoke","West",0,0,92,0
+"Regulation","Halfway done, don't forget to keep reading and thinking aloud.","How many of each animal did Moses put on the ark?","","Two",0,0,0,92
+"Regulation","Halfway done, don't forget to keep reading and thinking aloud.","How many of each animal did Moses put on the ark?","","Two",0,0,0,84
+"Regulation","Don't forget to keep reading and thinking. Halfway done.","How many of each animal did Moses put on the ark?","","Two",0,0,0,80
+"Regulation","Don't forget to keep reading and thinking now.","How many of each animal did Moses put on the ark?","","Two",0,0,0,80
+"Regulation","Let's keep reading aloud and thinking aloud.","How many of each animal did Moses put on the ark?","","Two",0,0,0,80
