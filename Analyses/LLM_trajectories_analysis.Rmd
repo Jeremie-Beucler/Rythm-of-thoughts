@@ -42,6 +42,8 @@ library(Hmisc)
 # Load scored chunks
 chunks_scored <- read.csv("./Output/scored_chunks.csv")
 
+data_long = read.csv("./Data/data_long.csv")
+
 
 # --------------------------------------------------------------------
 # Define Custom Colors for Functions
@@ -52,7 +54,8 @@ function_colors <- c(
   "Justification" = "gold2",  # Orange
   "Regulation" = "forestgreen",      # Green
   "Confidence" = "purple",          # Purple
-  "Repetition" = "darkorange1"     # Dark Orange
+  "Repetition" = "darkorange1",     # Dark Orange
+  "Answer Selection" = "black"           # Black
 )
 
 # --------------------------------------------------------------------
@@ -65,7 +68,10 @@ chunks_scored <- chunks_scored %>%
     response_justification = justification_mean,
     response_regulation = regulation_mean,
     response_confidence = confidence_mean,
-    response_repetition = repetition_mean)
+    response_repetition = repetition_mean,
+    response_answer_selection = answer_selection_mean) %>% 
+  left_join(data_long, by = c("subject_id", "question"))
+
 
 
 # --------------------------------------------------------------------
@@ -91,7 +97,7 @@ chunks_scored <- chunks_scored %>%
 # Select Variables
 # --------------------------------------------------------------------
 cor_vars <- chunks_scored %>%
-  select(response_control, response_generation, response_justification, response_regulation, response_confidence, response_repetition)
+  select(response_control, response_generation, response_justification, response_regulation, response_confidence, response_repetition, response_answer_selection)
 
 # --------------------------------------------------------------------
 # Compute Correlation Matrix & p-values
@@ -139,7 +145,8 @@ avg_scores <- chunks_scored %>%
     reconsidered_initial_resp = unique(reconsidered_initial_resp),
     verbalized_reasons = unique(verbalized_reasons),
     confidence = mean(response_confidence),
-    repetition = mean(response_repetition)
+    repetition = mean(response_repetition), 
+    answer_selection = mean(response_answer_selection)
   ) %>%
   ungroup()
 
@@ -155,7 +162,7 @@ avg_scores_filtered <- avg_scores %>%
 # --------------------------------------------------------------------
 cor_vars_handscored <- avg_scores_filtered %>%
   select(control, generation, justification, regulation,
-         reconsidered_initial_resp, verbalized_reasons, confidence, repetition)
+         reconsidered_initial_resp, verbalized_reasons, confidence, repetition, answer_selection)
 
 # --------------------------------------------------------------------
 # Compute Correlation Matrix with p-values
@@ -214,7 +221,8 @@ chunks_scored <- chunks_scored %>%
 chunks_long <- chunks_scored %>%
   pivot_longer(
     cols      = c(response_control, response_generation, response_justification,
-                  response_regulation, response_confidence, response_repetition),
+                  response_regulation, response_confidence, response_repetition, 
+                  response_answer_selection),
     names_to  = "deliberation_function",
     values_to = "score"
   ) %>%
@@ -225,7 +233,9 @@ chunks_long <- chunks_scored %>%
       response_justification = "Justification",
       response_regulation    = "Regulation",
       response_confidence    = "Confidence",
-      response_repetition    = "Repetition"),
+      response_repetition    = "Repetition",
+      response_answer_selection = "Answer Selection"
+      ),
     
     # factor conversions (unchanged)
     deliberation_function = factor(deliberation_function),
@@ -1062,7 +1072,7 @@ p_grid   # shows in viewer
 ```{r}
 # remove confidence and repetition for now
 chunks_long <- chunks_long %>%
-  filter(!deliberation_function %in% c("Confidence", "Repetition")) %>% 
+  filter(!deliberation_function %in% c("Confidence", "Repetition", "Answer Selection")) %>% 
   mutate(
     deliberation_function = factor(deliberation_function))
 
@@ -1729,9 +1739,6 @@ ggplot(grid, aes(x = prev_uncertainty, y = prev2_uncertainty, fill = fit)) +
   )
 
 ```
-
-
-
 
 ## Complementary Analyses
 
