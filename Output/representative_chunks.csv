@@ -1,21 +1,21 @@
 "Function","Chunk","Question","Correct_answer","Lured_answer","Control","Generation","Justification","Regulation"
 "Control","Shush.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
 "Control","No, no.","If you have only one match and you walk into a dark room with an oil lamp, a newspaper and wood—which thing would you light first?","Match","Oil lamp / Newspaper / Wood",100,0,0,0
-"Control","No, no, no, no.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
 "Control","No.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",100,0,0,0
 "Control","No.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",100,0,0,0
+"Control","Wait.","Would it be ethical for a man to marry the sister of his widow?","Not possible","Yes / No",100,0,0,0
 "Generation","I would light the match first.","If you have only one match and you walk into a dark room with an oil lamp, a newspaper and wood—which thing would you light first?","Match","Oil lamp / Newspaper / Wood",0,100,0,0
 "Generation","The yolk of the egg is yellow.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,96,0,0
 "Generation","No stairs.","In a one-storey pink house with everything pink, what colour were the stairs probably?","No stairs","Pink",0,96,0,0
 "Generation","The yolk is yellow.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,96,0,0
-"Generation","No stairs.","In a one-storey pink house with everything pink, what colour were the stairs probably?","No stairs","Pink",0,92,0,0
-"Justification","However, it is not literally correct.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,80,0
+"Generation","There are no stairs.","In a one-storey pink house with everything pink, what colour were the stairs probably?","No stairs","Pink",0,96,0,0
+"Justification","The question says already that the fifth daughter's name is Mary.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",0,0,80,0
 "Justification","And anybody with a brain would know that.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,0,76,0
-"Justification","That's my subtle way of saying it's a nice story, but I don't think it happened.","How many of each animal did Moses put on the ark?","None","Two",0,0,76,0
+"Justification","That's my subtle way of saying it's a nice story, but I don't think it happened.","How many of each animal did Moses put on the ark?","","Two",0,0,76,0
 "Justification","It's B, the yolk of the egg is white, because that's what English determines it is.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,20,80,0
 "Justification","Okay, so technically, B is grammatically correct because it is white.","Which sentence is correct: (a) 'the yolk of the egg are white' or (b) 'the yolk of the egg is white'?","The yolk is yellow","b",0,20,80,0
-"Regulation","Halfway done, don't forget to keep reading and thinking aloud.","How many of each animal did Moses put on the ark?","None","Two",0,0,0,84
-"Regulation","Have we done?","How many of each animal did Moses put on the ark?","None","Two",0,0,0,80
-"Regulation","It's taking a little long.","How many of each animal did Moses put on the ark?","None","Two",0,0,0,80
-"Regulation","Have I missed something?","How many of each animal did Moses put on the ark?","None","Two",0,0,0,80
-"Regulation","Don't forget to keep reading and thinking now.","How many of each animal did Moses put on the ark?","None","Two",0,0,0,80
+"Regulation","Halfway done, don't forget to keep reading and thinking aloud.","How many of each animal did Moses put on the ark?","","Two",0,0,0,84
+"Regulation","Have we done?","How many of each animal did Moses put on the ark?","","Two",0,0,0,80
+"Regulation","It's taking a little long.","How many of each animal did Moses put on the ark?","","Two",0,0,0,80
+"Regulation","Probably. Please remember to read aloud. Everything you're saying comes to mind.","Mary’s father has 5 daughters but no sons—Nana, Nene, Nini, Nono. What is the fifth daughter’s name probably?","Mary","Nunu",0,0,0,80
+"Regulation","Don't forget to keep reading and thinking around.","It’s a stormy night and a plane crashes - in which country do you bury the survivors?","Don't bury survivors","Burial location",0,0,0,80

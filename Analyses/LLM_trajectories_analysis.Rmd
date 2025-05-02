@@ -42,8 +42,6 @@ library(Hmisc)
 # Load scored chunks
 chunks_scored <- read.csv("./Output/scored_chunks.csv")
 
-data_long = read.csv("./Data/data_long.csv")
-
 
 # --------------------------------------------------------------------
 # Define Custom Colors for Functions
@@ -69,8 +67,7 @@ chunks_scored <- chunks_scored %>%
     response_regulation = regulation_mean,
     response_confidence = confidence_mean,
     response_repetition = repetition_mean,
-    response_answer_selection = answer_selection_mean) %>% 
-  left_join(data_long, by = c("subject_id", "question"))
+    response_answer_selection = answer_selection_mean)
 
 
 
@@ -85,6 +82,13 @@ chunks_scored <- chunks_scored %>%
   group_by(subject_id, question) %>%
   filter(max(chunk_id) > 1) %>%
   ungroup()
+
+# --------------------------------------------------------------------
+# Remove Familiar Subjects
+# --------------------------------------------------------------------
+chunks_scored = chunks_scored %>% 
+  filter(familiar == 0)
+
 
 chunks_scored <- chunks_scored %>%
   mutate(response = ifelse(response == "Reflect", "Correct", "Incorrect"))
@@ -826,8 +830,6 @@ p_final <- ggplot() +
                   ymax = upper_ci,
                   fill = deliberation_function),
               alpha = 0.2, color = NA) +
-
-  facet_wrap(~ deliberation_function, ncol = 2, scale = "free") +
   theme_apa() +
   labs(
     x     = "Normalized Position in Verbalization",
@@ -1037,8 +1039,8 @@ for (pair in function_pairs) {
     geom_abline(slope = 1, intercept = 0, linetype = "dotted", color = "black") +
     coord_fixed(ratio = 1) +
     theme_apa() +
-    xlim(0, 30) +
-    ylim(0, 30) 
+    xlim(0, 50) +
+    ylim(0, 50) 
 
 
   trajectory_plots[[paste(f1, f2, sep = "_vs_")]] <- p
@@ -1897,148 +1899,4 @@ p_final
 ggsave("./Output/gam_trajectory_lure_vs_no_lure_per_response_and_function.png",
        p_final, dpi = 600, width = 12, height = 8)
 
-```
-
-### Trajectories per Familiarity
-
-```{r}
-# ----------------------------------------------------------------------------
-# Recoding for clarity
-# ----------------------------------------------------------------------------
-chunks_long_fam <- chunks_long %>%
-  mutate(
-    familiar = factor(familiar, levels = c(0,1), labels = c("Unfamiliar", "Familiar")),
-    deliberation_function = factor(deliberation_function),
-    subject_id = factor(subject_id),
-    question   = factor(question)
-  ) %>%
-  filter(familiar %in% c("Unfamiliar", "Familiar"))
-
-# ----------------------------------------------------------------------------
-# Model
-# ----------------------------------------------------------------------------
-gam_model_fam <- bam(
-  score ~ familiar * deliberation_function + 
-    s(norm_mid, by = interaction(familiar, deliberation_function), k = 10) +
-    s(subject_id, bs = "re") +
-    s(question, bs = "re"),
-  data = chunks_long_fam,
-  method = "fREML"
-)
-
-summary(gam_model_fam)
-gam.check(gam_model_fam)
-appraise(gam_model_fam)
-
-# ----------------------------------------------------------------------------
-# Generate Prediction Data
-# ----------------------------------------------------------------------------
-newdata_fam <- expand.grid(
-  norm_mid = seq(0, 1, length.out = 10),
-  deliberation_function = levels(chunks_long_fam$deliberation_function),
-  familiar = levels(chunks_long_fam$familiar)
-)
-
-newdata_fam$subject_id <- levels(chunks_long_fam$subject_id)[1]
-newdata_fam$question   <- levels(chunks_long_fam$question)[1]
-
-predictions_fam <- predict(
-  gam_model_fam,
-  newdata = newdata_fam,
-  se.fit = TRUE,
-  exclude = c("s(subject_id)", "s(question)")
-)
-
-newdata_fam$pred <- predictions_fam$fit
-newdata_fam$se   <- predictions_fam$se.fit
-
-# ----------------------------------------------------------------------------
-# Compute Pairwise Differences: Familiar vs Unfamiliar
-# ----------------------------------------------------------------------------
-newdata_fam$diff <- NA
-newdata_fam$pval <- NA
-
-for(df in unique(newdata_fam$deliberation_function)) {
-  for(pos in unique(newdata_fam$norm_mid)) {
-    
-    tmp <- newdata_fam %>%
-      filter(deliberation_function == df,
-             norm_mid == pos)
-    
-    d  <- tmp$pred[tmp$familiar == "Familiar"] - 
-          tmp$pred[tmp$familiar == "Unfamiliar"]
-    
-    se <- sqrt(tmp$se[tmp$familiar == "Familiar"]^2 +
-               tmp$se[tmp$familiar == "Unfamiliar"]^2)
-    
-    zval <- d / se
-    pval <- 2 * (1 - pnorm(abs(zval)))
-    
-    newdata_fam$diff[newdata_fam$deliberation_function == df & 
-                     newdata_fam$norm_mid == pos] <- d
-    
-    newdata_fam$pval[newdata_fam$deliberation_function == df & 
-                     newdata_fam$norm_mid == pos] <- pval
-  }
-}
-
-newdata_fam <- newdata_fam %>%
-  group_by(deliberation_function) %>%
-  mutate(pval_adj = p.adjust(pval, method = "fdr"),
-         significant = pval_adj < 0.05) %>%
-  ungroup()
-
-# ----------------------------------------------------------------------------
-# Significant Regions
-# ----------------------------------------------------------------------------
-signif_regions_fam <- newdata_fam %>%
-  arrange(deliberation_function, norm_mid) %>%
-  group_by(deliberation_function) %>%
-  mutate(sig_grp = data.table::rleid(significant)) %>%
-  filter(significant) %>%
-  group_by(deliberation_function, sig_grp) %>%
-  summarise(xmin = min(norm_mid),
-            xmax = max(norm_mid)) %>%
-  ungroup()
-
-# ----------------------------------------------------------------------------
-# Plot
-# ----------------------------------------------------------------------------
-p_fam <- ggplot() +
-  
-  geom_line(data = newdata_fam,
-            aes(x = norm_mid, y = pred, 
-                color = familiar),
-            size = 1) +
-  
-  geom_ribbon(data = newdata_fam,
-              aes(x = norm_mid, ymin = pred - 1.96 * se, ymax = pred + 1.96 * se,
-                  fill = familiar),
-              alpha = 0.2, color = NA) +
-  
-  geom_rect(data = signif_regions_fam,
-            aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
-            fill = "grey30", alpha = 0.1) +
-  
-  facet_wrap(~ deliberation_function, scales = "free_y") +
-  
-scale_color_manual(values = c("Unfamiliar" = "grey30",
-                               "Familiar" = "steelblue")) +
-scale_fill_manual(values = c("Unfamiliar" = "grey30",
-                              "Familiar" = "steelblue")) +
-  
-  theme_apa() +
-  
-  labs(x = "Normalized Position in Verbalization",
-       y = "Predicted Score",
-       color = "Familiarity",
-       fill  = "Familiarity")
-
-p_fam
-
-# ----------------------------------------------------------------------------
-# Save
-# ----------------------------------------------------------------------------
-ggsave("./Output/gam_trajectory_familiar_vs_unfamiliar_per_function.png",
-       p_fam, dpi = 600, width = 12, height = 6)
 ```
