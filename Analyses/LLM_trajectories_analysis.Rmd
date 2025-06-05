@@ -506,12 +506,148 @@ representative_chunks_annotated <- representative_chunks %>%
 write.csv(representative_chunks_annotated, "./Output/representative_chunks.csv", row.names = FALSE)
 ```
 
+## Validation chunks subset
+
+```{r}
+# ------------------------------------------------------------------
+# 0)  Setup
+# ------------------------------------------------------------------
+set.seed(123)                                 # reproducible
+chunks_work <- chunks_scores_loop %>% 
+  mutate(rowid = row_number())                # unique key
+
+fun_cols <- c(Control       = "response_control",
+              Generation    = "response_generation",
+              Justification = "response_justification",
+              Regulation    = "response_regulation",
+              Confidence    = "response_confidence")
+# ------------------------------------------------------------------
+
+# ------------------------------------------------------------------
+# 1)  Add 5 fixed-range bins for every function
+# ------------------------------------------------------------------
+for (fc in fun_cols) {
+  chunks_work[[paste0(fc, "_bin")]] <- cut(chunks_work[[fc]],
+                                           breaks = c(-Inf, 20, 40, 60, 80, Inf),
+                                           labels = 1:5)
+}
+
+# Build a target matrix of remaining quota (20 for every combo)
+quota <- matrix(20, nrow = length(fun_cols), ncol = 5,
+                dimnames = list(names(fun_cols), 1:5))
+
+selected_ids <- integer(0)      # store chosen rowids
+
+# ------------------------------------------------------------------
+# 2)  Greedy coverage loop
+# ------------------------------------------------------------------
+while (length(selected_ids) < 100 && any(quota > 0)) {
+
+  # ---- Evaluate every yet-unpicked row ---------------------------
+  candidates <- chunks_work %>% 
+    filter(!rowid %in% selected_ids) %>% 
+    rowwise() %>% 
+    mutate(
+      # How many *still-unmet* quotas would this row satisfy?
+      gain = sum(
+        pmax(0,
+             quota["Control"      , paste0(response_control_bin)], 0),
+        pmax(0,
+             quota["Generation"   , paste0(response_generation_bin)], 0),
+        pmax(0,
+             quota["Justification", paste0(response_justification_bin)], 0),
+        pmax(0,
+             quota["Regulation"   , paste0(response_regulation_bin)], 0),
+        pmax(0,
+             quota["Confidence"   , paste0(response_confidence_bin)], 0)
+      )
+    ) %>% 
+    ungroup()
+  
+  best_gain <- max(candidates$gain)
+  
+  # If every candidate gives zero gain, coverage is done — break
+  if (best_gain == 0) break
+  
+  # Randomly pick one of the top-gain rows
+  pick_id <- candidates %>% 
+    filter(gain == best_gain) %>% 
+    slice_sample(n = 1) %>% 
+    pull(rowid)
+  
+  # Register the pick
+  selected_ids <- c(selected_ids, pick_id)
+  
+  # Reduce the unmet quota for every combo this row covers
+  row_info <- chunks_work %>% filter(rowid == pick_id)
+  
+  quota["Control"      , as.character(row_info$response_control_bin)]       <-
+    pmax(0, quota["Control",      as.character(row_info$response_control_bin)]       - 1)
+  quota["Generation"   , as.character(row_info$response_generation_bin)]    <-
+    pmax(0, quota["Generation",   as.character(row_info$response_generation_bin)]    - 1)
+  quota["Justification", as.character(row_info$response_justification_bin)] <-
+    pmax(0, quota["Justification",as.character(row_info$response_justification_bin)] - 1)
+  quota["Regulation"   , as.character(row_info$response_regulation_bin)]    <-
+    pmax(0, quota["Regulation",   as.character(row_info$response_regulation_bin)]    - 1)
+  quota["Confidence"   , as.character(row_info$response_confidence_bin)]    <-
+    pmax(0, quota["Confidence",   as.character(row_info$response_confidence_bin)]    - 1)
+}
+
+# ------------------------------------------------------------------
+# 3)  Top-up randomly if we’re still under 100
+# ------------------------------------------------------------------
+if (length(selected_ids) < 100) {
+  need <- 100 - length(selected_ids)
+  extra_ids <- chunks_work %>% 
+    filter(!rowid %in% selected_ids) %>% 
+    slice_sample(n = need) %>% 
+    pull(rowid)
+  selected_ids <- c(selected_ids, extra_ids)
+}
+
+sampled_100 <- chunks_work %>% 
+  filter(rowid %in% selected_ids)
+
+# ------------------------------------------------------------------
+# 4)  Two CSVs
+# ------------------------------------------------------------------
+## Select columns for raters
+chunks_for_raters <- sampled_100 %>% 
+  select(question_text, correct_answer, lured_answer,
+         chunk_text) %>% 
+  # if correct_answer is NA, replace by "None "
+  mutate(correct_answer = ifelse(correct_answer == "", "Cannot answer", correct_answer))
+
+write.csv(chunks_for_raters,   "./Data/chunks_for_raters.csv",   row.names = FALSE)
+
+# ------------------------------------------------------------------
+# 5)  Quick diagnostic histogram grid
+# ------------------------------------------------------------------
+sampled_long <- sampled_100 %>% 
+  pivot_longer(cols = all_of(unname(fun_cols)),
+               names_to   = "deliberation_function",
+               values_to  = "score") %>% 
+  mutate(deliberation_function_ = factor(deliberation_function,
+                           levels = fun_cols,
+                           labels = names(fun_cols)))
+
+ggplot(sampled_long, aes(x = score)) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~deliberation_function, scales = "free_x") +
+  labs(x = "Score (sampled set)", y = "Count",
+       title = "Distribution of Scores in the 100-chunk Sample") +
+  theme_minimal()
+
+ggsave("./Output/histograms_sampled_functions.png",
+       width = 10, height = 6, dpi = 600)
+```
+
+
 ## Overall Distribution of Deliberation Functions
 
 ### At the chunk level
 
 ```{r}
-
 ggplot(chunks_long, aes(x = deliberation_function, y = score, fill = deliberation_function)) +
   geom_violin(trim = TRUE, alpha = 0.5) +
   geom_jitter(width = 0.2, alpha = 0.3) +
@@ -754,6 +890,9 @@ chunks_long <- chunks_long %>%
     question              = factor(question)
   )
 
+# exclude Repetition, Answer Selection, Confidence
+chunks_long <- chunks_long %>%
+  filter(!deliberation_function %in% c("Repetition", "Answer Selection", "Confidence"))
 
 # ----------------------------------------------------------------------------
 # Fit GAM Model without Response
@@ -766,6 +905,19 @@ gam_model <- bam(
   data    = chunks_long,
   method  = "fREML"
 )
+
+derivs <- derivatives(
+  gam_model,
+  select = "s(norm_mid)",
+  partial_match = TRUE
+)
+
+ggplot(derivs, aes(x = norm_mid, y = .derivative, color = .smooth)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = .lower_ci, ymax = .upper_ci, fill = .smooth), alpha = 0.2) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  labs(x = "Normalized Time", y = "Rate of Change (Derivative)") +
+  theme_minimal()
 
 summary(gam_model)
 gam.check(gam_model)
